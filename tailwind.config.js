@@ -1,0 +1,86 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        tb: {
+          teal: '#00A389',
+          'teal-dark': '#007A66',
+          'teal-light': '#E6F7F4',
+          blue: '#0078FF',
+          'blue-dark': '#005AC2',
+          gold: '#F59E0B',
+          'gold-light': '#FEF3C7',
+          'gold-dark': '#D97706',
+          bg: '#F4F6F8',
+          card: '#FFFFFF',
+          border: '#E2E8F0',
+          dark: '#1E293B',
+          slate: '#0F172A',
+        },
+        navy: {
+          950: '#081325',
+          900: '#0C1829',
+          850: '#11223A',
+          800: '#172E4E',
+          700: '#234472',
+          600: '#325C99',
+          500: '#4675BC',
+        },
+        royal: {
+          50: '#F8FAFC',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B',
+          600: '#334155',
+          700: '#1E293B',
+          800: '#0F172A',
+          900: '#0C1829',
+        },
+        gold: {
+          50: '#FDFBF7',
+          100: '#F9F3E5',
+          200: '#F3E5C4',
+          300: '#EBD29C',
+          400: '#DEBA6F',
+          500: '#C89D46',
+          600: '#AA8030',
+          700: '#8A641F',
+          800: '#6C4C14',
+          900: '#52380C',
+        },
+        cream: {
+          50: '#FAF7F2',
+          100: '#F5EFEB',
+          200: '#EBE3DA',
+          300: '#DFD5C8',
+          400: '#C8BCAC',
+        },
+      },
+      fontFamily: {
+        sans: ['var(--font-inter)', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        bengali: ['var(--font-noto-bengali)', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        'premium': '0 10px 25px -5px rgba(12, 24, 41, 0.06), 0 8px 10px -6px rgba(12, 24, 41, 0.04)',
+        'premium-hover': '0 20px 35px -5px rgba(12, 24, 41, 0.10), 0 10px 15px -5px rgba(12, 24, 41, 0.05)',
+        'glow-gold': '0 0 20px -3px rgba(200, 157, 70, 0.35)',
+        'glow-blue': '0 0 25px -3px rgba(12, 24, 41, 0.25)',
+      },
+      borderRadius: {
+        'xl': '14px',
+        '2xl': '18px',
+        '3xl': '24px',
+      }
+    },
+  },
+  plugins: [],
+};

@@ -1,0 +1,206 @@
+<svg width="420" height="880" viewBox="0 0 420 880" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="880" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FAF7F2"/>
+      <stop offset="1" stop-color="#F5EFEB"/>
+    </linearGradient>
+
+    <linearGradient id="heroDark" x1="20" y1="120" x2="400" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#081325"/>
+      <stop offset="0.5" stop-color="#0C1829"/>
+      <stop offset="1" stop-color="#060E1C"/>
+    </linearGradient>
+
+    <linearGradient id="progressArc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+
+    <filter id="cardShadow" x="10" y="110" width="400" height="240" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0C1829" flood-opacity="0.12"/>
+    </filter>
+
+    <filter id="softShadow" x="0" y="0" width="420" height="880" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0C1829" flood-opacity="0.04"/>
+    </filter>
+  </defs>
+
+  <!-- Device Background Canvas -->
+  <rect width="420" height="880" rx="36" fill="url(#bgGrad)"/>
+  <rect width="420" height="880" rx="36" stroke="#EBE3DA" stroke-width="2"/>
+
+  <!-- Top Status Bar -->
+  <text x="36" y="38" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="14" font-weight="700">9:41</text>
+  <!-- Signal & Battery Icons -->
+  <circle cx="355" cy="34" r="3" fill="#0C1829"/>
+  <circle cx="363" cy="34" r="3" fill="#0C1829"/>
+  <circle cx="371" cy="34" r="3" fill="#0C1829"/>
+  <rect x="382" y="28" width="18" height="11" rx="3" stroke="#0C1829" stroke-width="2"/>
+  <rect x="385" y="31" width="11" height="5" rx="1.5" fill="#0C1829"/>
+
+  <!-- Top Navigation Bar -->
+  <rect x="20" y="56" width="34" height="34" rx="10" fill="#081325"/>
+  <text x="28" y="79" fill="#FAF7F2" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="900">WB</text>
+  
+  <text x="64" y="74" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="900" letter-spacing="-0.3">WB DECODED</text>
+  <rect x="180" y="62" width="62" height="18" rx="5" fill="#F5EFEB" stroke="#DFD5C8"/>
+  <text x="186" y="75" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="800">PREMIUM</text>
+
+  <!-- Notification Bell -->
+  <circle cx="385" cy="73" r="16" fill="#FFFFFF" stroke="#EBE3DA"/>
+  <path d="M385 66 C382 66 380 68 380 71 V74 L378 76 H392 L390 74 V71 C390 68 388 66 385 66 Z" fill="#64748B"/>
+  <circle cx="390" cy="67" r="3.5" fill="#EF4444"/>
+
+  <!-- Greeting Header -->
+  <text x="20" y="122" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="900">Good Morning, Aspirant! 👋</text>
+  <rect x="20" y="132" width="380" height="26" rx="8" fill="#F5EFEB"/>
+  <text x="30" y="149" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-style="italic">“Your dream job is just one decision away.”</text>
+
+  <!-- ========================================================================= -->
+  <!-- HERO CARD: YOUR PREPARATION (DARK MIDNIGHT NAVY)                          -->
+  <!-- ========================================================================= -->
+  <g filter="url(#cardShadow)">
+    <rect x="20" y="170" width="380" height="195" rx="24" fill="url(#heroDark)"/>
+    <rect x="20" y="170" width="380" height="195" rx="24" stroke="#172E4E" stroke-width="1.5"/>
+  </g>
+
+  <!-- Header Inside Card -->
+  <text x="38" y="196" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="800" letter-spacing="1">YOUR PREPARATION</text>
+  <rect x="270" y="184" width="116" height="18" rx="9" fill="#11223A" stroke="#1E3A8A"/>
+  <circle cx="280" cy="193" r="3" fill="#10B981"/>
+  <text x="288" y="196" fill="#38BDF8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9.5" font-weight="700">State Rank #24 (Top 4%)</text>
+
+  <!-- Progress Circle (68%) -->
+  <circle cx="82" cy="265" r="38" stroke="#172E4E" stroke-width="8" fill="none"/>
+  <path d="M 82 227 A 38 38 0 1 1 50 286" stroke="url(#progressArc)" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <text x="82" y="262" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="900">68%</text>
+  <text x="82" y="278" text-anchor="middle" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700">PROGRESS</text>
+
+  <!-- 4 Stat Badges (Right Grid) -->
+  <!-- Streak -->
+  <rect x="145" y="215" width="112" height="44" rx="12" fill="#0F223D" stroke="#172E4E"/>
+  <text x="156" y="235" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="900">12 Days</text>
+  <text x="156" y="249" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9.5" font-weight="600">Day Streak 🔥</text>
+
+  <!-- Accuracy -->
+  <rect x="268" y="215" width="118" height="44" rx="12" fill="#0F223D" stroke="#172E4E"/>
+  <text x="279" y="235" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="900">78%</text>
+  <text x="279" y="249" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9.5" font-weight="600">Avg. Accuracy 🎯</text>
+
+  <!-- Tests -->
+  <rect x="145" y="266" width="112" height="44" rx="12" fill="#0F223D" stroke="#172E4E"/>
+  <text x="156" y="286" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="900">43 Tests</text>
+  <text x="156" y="300" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9.5" font-weight="600">Attempted 📝</text>
+
+  <!-- Questions -->
+  <rect x="268" y="266" width="118" height="44" rx="12" fill="#0F223D" stroke="#172E4E"/>
+  <text x="279" y="286" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="900">2,840</text>
+  <text x="279" y="300" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9.5" font-weight="600">Questions Solved 📖</text>
+
+  <!-- Dual Bottom Card CTA Buttons -->
+  <rect x="36" y="322" width="165" height="30" rx="10" fill="#FFFFFF"/>
+  <text x="50" y="342" fill="#081325" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="900">🎯 FULL MOCKS (80)</text>
+
+  <rect x="210" y="322" width="176" height="30" rx="10" fill="#11223A" stroke="#172E4E"/>
+  <text x="222" y="342" fill="#FAF7F2" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="800">📖 CHAPTER ARENA (1.2K)</text>
+
+  <!-- ========================================================================= -->
+  <!-- TODAY'S MISSION CARD (WARM SANDSTONE / CLEAN CARD)                        -->
+  <!-- ========================================================================= -->
+  <rect x="20" y="380" width="380" height="92" rx="20" fill="#FFFFFF" stroke="#EBE3DA" stroke-width="1.5"/>
+  <text x="36" y="404" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="900" letter-spacing="1">TODAY'S MISSION</text>
+  <text x="280" y="404" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" font-weight="600">100 Qs • 90 Mins</text>
+
+  <text x="36" y="430" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14.5" font-weight="900">WBCS Prelims Full Mock 05</text>
+  <text x="36" y="448" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Official Blueprint Standard • Compulsory GS</text>
+
+  <rect x="296" y="420" width="90" height="34" rx="12" fill="#081325"/>
+  <text x="312" y="441" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="800">Start Now ➔</text>
+
+  <!-- ========================================================================= -->
+  <!-- EXPLORE EXAMS SECTION                                                     -->
+  <!-- ========================================================================= -->
+  <text x="20" y="495" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="900">Explore Exams</text>
+  <text x="345" y="495" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="800">View All ➔</text>
+
+  <!-- 4 Exam Cards -->
+  <!-- WBCS -->
+  <rect x="20" y="508" width="88" height="96" rx="16" fill="#FFFFFF" stroke="#EBE3DA"/>
+  <circle cx="64" cy="536" r="16" fill="#FAF7F2" stroke="#EBE3DA"/>
+  <text x="64" y="542" text-anchor="middle" fill="#0C1829" font-size="16">🏛️</text>
+  <text x="64" y="568" text-anchor="middle" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="900">WBCS</text>
+  <text x="64" y="583" text-anchor="middle" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="600">80 Mocks</text>
+
+  <!-- WB Police -->
+  <rect x="117" y="508" width="88" height="96" rx="16" fill="#FFFFFF" stroke="#EBE3DA"/>
+  <circle cx="161" cy="536" r="16" fill="#FAF7F2" stroke="#EBE3DA"/>
+  <text x="161" y="542" text-anchor="middle" fill="#0C1829" font-size="16">👮</text>
+  <text x="161" y="568" text-anchor="middle" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="900">WB Police</text>
+  <text x="161" y="583" text-anchor="middle" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="600">SI &amp; Const.</text>
+
+  <!-- Food SI -->
+  <rect x="214" y="508" width="88" height="96" rx="16" fill="#FFFFFF" stroke="#EBE3DA"/>
+  <circle cx="258" cy="536" r="16" fill="#FAF7F2" stroke="#EBE3DA"/>
+  <text x="258" y="542" text-anchor="middle" fill="#0C1829" font-size="16">🌾</text>
+  <text x="258" y="568" text-anchor="middle" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="900">Food SI</text>
+  <text x="258" y="583" text-anchor="middle" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="600">40 Mocks</text>
+
+  <!-- Clerkship -->
+  <rect x="311" y="508" width="88" height="96" rx="16" fill="#081325" stroke="#172E4E"/>
+  <circle cx="355" cy="536" r="16" fill="#11223A"/>
+  <text x="355" y="542" text-anchor="middle" fill="#FFFFFF" font-size="16">📋</text>
+  <text x="355" y="568" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="900">Clerkship</text>
+  <text x="355" y="583" text-anchor="middle" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="600">60+ Mocks</text>
+
+  <!-- ========================================================================= -->
+  <!-- RETENTION SUITE: MISTAKE VAULT & WEAK AREAS                                -->
+  <!-- ========================================================================= -->
+  <rect x="20" y="618" width="184" height="88" rx="18" fill="#FFFFFF" stroke="#EBE3DA"/>
+  <text x="36" y="642" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" font-weight="900">Mistake Vault</text>
+  <rect x="36" y="652" width="70" height="18" rx="6" fill="#FEE2E2"/>
+  <text x="42" y="665" fill="#DC2626" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9.5" font-weight="800">2 Due for Recall</text>
+  <text x="36" y="688" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">Spaced Repetition ➔</text>
+
+  <rect x="216" y="618" width="184" height="88" rx="18" fill="#FFFFFF" stroke="#EBE3DA"/>
+  <text x="232" y="642" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" font-weight="900">AI Weak Areas</text>
+  <rect x="232" y="652" width="105" height="18" rx="6" fill="#F5EFEB"/>
+  <text x="238" y="665" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9.5" font-weight="800">Fundamental Rights</text>
+  <text x="232" y="688" fill="#DC2626" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700">62% Accuracy • Drill ➔</text>
+
+  <!-- Benchmark Banner -->
+  <rect x="20" y="718" width="380" height="74" rx="20" fill="#081325"/>
+  <circle cx="50" cy="755" r="16" fill="#11223A"/>
+  <text x="50" y="761" text-anchor="middle" fill="#FFFFFF" font-size="16">🏆</text>
+  <text x="76" y="748" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="900">Bengal Aspirants Leaderboard</text>
+  <text x="76" y="765" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Rank #3 in North 24 Parganas • 15.4K Active</text>
+  <rect x="315" y="742" width="70" height="26" rx="8" fill="#FFFFFF"/>
+  <text x="326" y="759" fill="#081325" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="900">Rankings ➔</text>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM FIXED NAVIGATION BAR                                               -->
+  <!-- ========================================================================= -->
+  <rect x="0" y="805" width="420" height="75" fill="#FFFFFF" stroke="#EBE3DA" stroke-width="1.5"/>
+  
+  <!-- Home (Active) -->
+  <text x="44" y="834" text-anchor="middle" font-size="16">🏠</text>
+  <text x="44" y="852" text-anchor="middle" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="900">Home</text>
+  <circle cx="44" cy="862" r="2" fill="#0C1829"/>
+
+  <!-- Exams -->
+  <text x="124" y="834" text-anchor="middle" font-size="16">🎯</text>
+  <text x="124" y="852" text-anchor="middle" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600">Exams</text>
+
+  <!-- Daily Floating Button -->
+  <circle cx="210" cy="820" r="22" fill="#081325" stroke="#FFFFFF" stroke-width="3"/>
+  <text x="210" y="826" text-anchor="middle" font-size="16">⚡</text>
+  <text x="210" y="854" text-anchor="middle" fill="#0C1829" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="900">Daily</text>
+
+  <!-- Practice -->
+  <text x="296" y="834" text-anchor="middle" font-size="16">📖</text>
+  <text x="296" y="852" text-anchor="middle" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600">Arena</text>
+
+  <!-- Analytics -->
+  <text x="374" y="834" text-anchor="middle" font-size="16">📊</text>
+  <text x="374" y="852" text-anchor="middle" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600">Stats</text>
+</svg>

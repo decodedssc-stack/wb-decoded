@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Rich Cinematic Navy Background Gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1280" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#051329" />
+      <stop offset="40%" stop-color="#0A1E3F" />
+      <stop offset="80%" stop-color="#081833" />
+      <stop offset="100%" stop-color="#030B17" />
+    </linearGradient>
+
+    <!-- Warm Golden Parchment Overlay Gradient on the Right Side -->
+    <radialGradient id="parchmentGlow" cx="85%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#EAB308" stop-opacity="0.35" />
+      <stop offset="35%" stop-color="#B45309" stop-opacity="0.2" />
+      <stop offset="70%" stop-color="#78350F" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#051329" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Golden Foil Metallic Text Gradient -->
+    <linearGradient id="goldTextGrad" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFBEB" />
+      <stop offset="25%" stop-color="#FDE047" />
+      <stop offset="60%" stop-color="#F59E0B" />
+      <stop offset="90%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#92400E" />
+    </linearGradient>
+
+    <!-- Premium Golden Ribbon Gradient -->
+    <linearGradient id="ribbonGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#B45309" />
+      <stop offset="20%" stop-color="#F59E0B" />
+      <stop offset="50%" stop-color="#FDE68A" />
+      <stop offset="80%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#B45309" />
+    </linearGradient>
+
+    <!-- Book Spine Gradient (Blue) -->
+    <linearGradient id="bookSpine1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="50%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <!-- Book Spine Gradient (Brown Leather) -->
+    <linearGradient id="bookSpine2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#451A03" />
+      <stop offset="50%" stop-color="#78350F" />
+      <stop offset="100%" stop-color="#451A03" />
+    </linearGradient>
+
+    <!-- Book Spine Gradient (Dark Navy) -->
+    <linearGradient id="bookSpine3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#082F49" />
+      <stop offset="50%" stop-color="#0369A1" />
+      <stop offset="100%" stop-color="#082F49" />
+    </linearGradient>
+
+    <!-- Soft Drop Shadow Filter -->
+    <filter id="shadowHeavy" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+    
+    <filter id="textGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.8" />
+    </filter>
+  </defs>
+
+  <!-- 1. BASE BACKGROUND & PARCHMENT TEXTURE -->
+  <rect width="1280" height="720" fill="url(#bgGrad)" />
+  <rect width="1280" height="720" fill="url(#parchmentGlow)" />
+
+  <!-- Background Vintage Map & Script Linework Overlay -->
+  <g opacity="0.06" stroke="#FFFFFF" stroke-width="1.2">
+    <circle cx="1060" cy="300" r="160" />
+    <circle cx="1060" cy="300" r="240" />
+    <circle cx="1060" cy="300" r="320" />
+    <line x1="0" y1="360" x2="1280" y2="360" stroke-dasharray="10 10" />
+    <line x1="640" y1="0" x2="640" y2="720" stroke-dasharray="10 10" />
+  </g>
+
+  <!-- 2. ASHOKA CHAKRA 24-SPOKE WATERMARK (RIGHT SIDE) -->
+  <g transform="translate(1060, 300)" opacity="0.14" stroke="#FDE047" stroke-width="2.5" fill="none">
+    <circle cx="0" cy="0" r="150" />
+    <circle cx="0" cy="0" r="142" />
+    <circle cx="0" cy="0" r="30" fill="#FDE047" />
+    <!-- 24 Spokes -->
+    <line x1="0" y1="0" x2="142" y2="0" stroke-width="2" /><line x1="0" y1="0" x2="137.1614673330477" y2="36.75230440455795" stroke-width="2" /><line x1="0" y1="0" x2="122.9756073373903" y2="70.99999999999999" stroke-width="2" /><line x1="0" y1="0" x2="100.40916292848975" y2="100.40916292848974" stroke-width="2" /><line x1="0" y1="0" x2="71.00000000000001" y2="122.97560733739029" stroke-width="2" /><line x1="0" y1="0" x2="36.75230440455795" y2="137.1614673330477" stroke-width="2" /><line x1="0" y1="0" x2="8.694992273946208e-15" y2="142" stroke-width="2" /><line x1="0" y1="0" x2="-36.75230440455796" y2="137.1614673330477" stroke-width="2" /><line x1="0" y1="0" x2="-70.99999999999997" y2="122.9756073373903" stroke-width="2" /><line x1="0" y1="0" x2="-100.40916292848974" y2="100.40916292848975" stroke-width="2" /><line x1="0" y1="0" x2="-122.9756073373903" y2="70.99999999999999" stroke-width="2" /><line x1="0" y1="0" x2="-137.16146733304768" y2="36.75230440455798" stroke-width="2" /><line x1="0" y1="0" x2="-142" y2="1.7389984547892416e-14" stroke-width="2" /><line x1="0" y1="0" x2="-137.1614673330477" y2="-36.75230440455789" stroke-width="2" /><line x1="0" y1="0" x2="-122.97560733739029" y2="-71.00000000000001" stroke-width="2" /><line x1="0" y1="0" x2="-100.40916292848978" y2="-100.40916292848974" stroke-width="2" /><line x1="0" y1="0" x2="-71.00000000000006" y2="-122.97560733739026" stroke-width="2" /><line x1="0" y1="0" x2="-36.75230440455793" y2="-137.1614673330477" stroke-width="2" /><line x1="0" y1="0" x2="-2.608497682183862e-14" y2="-142" stroke-width="2" /><line x1="0" y1="0" x2="36.752304404558004" y2="-137.16146733304768" stroke-width="2" /><line x1="0" y1="0" x2="71.00000000000001" y2="-122.97560733739029" stroke-width="2" /><line x1="0" y1="0" x2="100.40916292848972" y2="-100.40916292848978" stroke-width="2" /><line x1="0" y1="0" x2="122.97560733739024" y2="-71.00000000000006" stroke-width="2" /><line x1="0" y1="0" x2="137.1614673330477" y2="-36.75230440455794" stroke-width="2" />
+  </g>
+
+  <!-- 3. LEFT SIDE: INDIAN PARLIAMENT / SAN SAD COLONNADE ILLUSION -->
+  <g transform="translate(30, 360)" opacity="0.25">
+    <path d="M0 320 L0 100 Q180 50 360 80 L360 320 Z" fill="#1E293B" />
+    <!-- Pillars -->
+    <rect x="20" y="110" width="16" height="200" rx="3" fill="#334155" /><rect x="52" y="110" width="16" height="200" rx="3" fill="#334155" /><rect x="84" y="110" width="16" height="200" rx="3" fill="#334155" /><rect x="116" y="110" width="16" height="200" rx="3" fill="#334155" /><rect x="148" y="110" width="16" height="200" rx="3" fill="#334155" /><rect x="180" y="110" width="16" height="200" rx="3" fill="#334155" /><rect x="212" y="110" width="16" height="200" rx="3" fill="#334155" /><rect x="244" y="110" width="16" height="200" rx="3" fill="#334155" /><rect x="276" y="110" width="16" height="200" rx="3" fill="#334155" /><rect x="308" y="110" width="16" height="200" rx="3" fill="#334155" />
+    <rect x="10" y="85" width="340" height="25" rx="4" fill="#475569" />
+  </g>
+
+  <!-- 4. LEFT SIDE: INDIAN NATIONAL TRICOLOUR FLAG WAVING -->
+  <g transform="translate(30, 40)" filter="url(#shadowHeavy)">
+    <!-- Flagpole -->
+    <rect x="0" y="0" width="8" height="340" rx="4" fill="#D1D5DB" />
+    <circle cx="4" cy="0" r="9" fill="#F59E0B" />
+    <!-- Waving Flag Cloth -->
+    <path d="M8 10 C80 -5, 140 25, 230 10 C270 2, 290 8, 320 2 L320 65 C290 71, 270 65, 230 73 C140 88, 80 58, 8 73 Z" fill="#FF9933" />
+    <path d="M8 73 C80 58, 140 88, 230 73 C270 65, 290 71, 320 65 L320 128 C290 134, 270 128, 230 136 C140 151, 80 121, 8 136 Z" fill="#FFFFFF" />
+    <path d="M8 136 C80 121, 140 151, 230 136 C270 128, 290 134, 320 128 L320 191 C290 197, 270 191, 230 199 C140 214, 80 184, 8 199 Z" fill="#138808" />
+    <!-- Flag Chakra -->
+    <g transform="translate(164, 104)">
+      <circle cx="0" cy="0" r="18" stroke="#000080" stroke-width="2.5" fill="none" />
+      <circle cx="0" cy="0" r="4" fill="#000080" />
+      <line x1="0" y1="0" x2="18" y2="0" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="15.588457268119896" y2="8.999999999999998" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="9.000000000000002" y2="15.588457268119894" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="1.102182119232618e-15" y2="18" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="-8.999999999999996" y2="15.588457268119896" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="-15.588457268119896" y2="8.999999999999998" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="-18" y2="2.204364238465236e-15" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="-15.588457268119894" y2="-9.000000000000002" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="-9.000000000000007" y2="-15.588457268119893" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="-3.3065463576978533e-15" y2="-18" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="9.000000000000002" y2="-15.588457268119894" stroke="#000080" stroke-width="1.2" /><line x1="0" y1="0" x2="15.58845726811989" y2="-9.000000000000007" stroke="#000080" stroke-width="1.2" />
+    </g>
+  </g>
+
+  <!-- 5. LEFT BOTTOM: GOLDEN ASHOKA LION CAPITAL STATUE (EMBLEM) -->
+  <g transform="translate(50, 410)" filter="url(#shadowHeavy)">
+    <!-- Base Circular Pillar -->
+    <ellipse cx="65" cy="220" rx="60" ry="18" fill="#78350F" />
+    <rect x="15" y="150" width="100" height="70" fill="#B45309" rx="6" />
+    <ellipse cx="65" cy="150" rx="52" ry="14" fill="#D97706" />
+    <!-- Lion Silhouette & Sculpted Golden Figure -->
+    <path d="M40 145 C35 110, 45 80, 50 60 C52 45, 60 30, 65 20 C70 30, 78 45, 80 60 C85 80, 95 110, 90 145 Z" fill="#F59E0B" />
+    <path d="M25 140 C20 110, 30 85, 38 65 C45 90, 50 115, 52 140 Z" fill="#D97706" />
+    <path d="M105 140 C110 110, 100 85, 92 65 C85 90, 80 115, 78 140 Z" fill="#D97706" />
+    <!-- Chakra in Base -->
+    <circle cx="65" cy="185" r="14" stroke="#FEF08A" stroke-width="2.5" fill="none" />
+  </g>
+
+  <!-- 6. RIGHT BOTTOM: VINTAGE LEATHER LAW BOOKS WITH GOLD LETTERING -->
+  <g transform="translate(860, 440)" filter="url(#shadowHeavy)">
+    <!-- Book 1 (Bottom Dark Blue) -->
+    <g transform="translate(0, 140)">
+      <rect x="0" y="0" width="370" height="60" rx="8" fill="url(#bookSpine1)" stroke="#475569" stroke-width="1.5" />
+      <rect x="355" y="6" width="12" height="48" fill="#F8FAFC" rx="2" />
+      <line x1="30" y1="0" x2="30" y2="60" stroke="#FDE047" stroke-width="2" />
+      <line x1="34" y1="0" x2="34" y2="60" stroke="#FDE047" stroke-width="1" />
+      <text x="50" y="38" fill="#FEF08A" font-family="-apple-system, BlinkMacSystemFont, 'Times New Roman', serif" font-size="16" font-weight="900" letter-spacing="2">
+        MUNICIPALITIES (PART IXA)
+      </text>
+    </g>
+
+    <!-- Book 2 (Middle Maroon/Brown) -->
+    <g transform="translate(15, 70)">
+      <rect x="0" y="0" width="360" height="60" rx="8" fill="url(#bookSpine2)" stroke="#92400E" stroke-width="1.5" />
+      <rect x="345" y="6" width="12" height="48" fill="#F8FAFC" rx="2" />
+      <line x1="30" y1="0" x2="30" y2="60" stroke="#FDE047" stroke-width="2" />
+      <line x1="34" y1="0" x2="34" y2="60" stroke="#FDE047" stroke-width="1" />
+      <text x="50" y="38" fill="#FEF08A" font-family="-apple-system, BlinkMacSystemFont, 'Times New Roman', serif" font-size="16" font-weight="900" letter-spacing="2">
+        11TH SCHEDULE (29 ITEMS)
+      </text>
+    </g>
+
+    <!-- Book 3 (Top Deep Navy) -->
+    <g transform="translate(30, 0)">
+      <rect x="0" y="0" width="350" height="60" rx="8" fill="url(#bookSpine3)" stroke="#0284C7" stroke-width="1.5" />
+      <rect x="335" y="6" width="12" height="48" fill="#F8FAFC" rx="2" />
+      <line x1="30" y1="0" x2="30" y2="60" stroke="#FDE047" stroke-width="2" />
+      <line x1="34" y1="0" x2="34" y2="60" stroke="#FDE047" stroke-width="1" />
+      <text x="50" y="38" fill="#FEF08A" font-family="-apple-system, BlinkMacSystemFont, 'Times New Roman', serif" font-size="16" font-weight="900" letter-spacing="2">
+        73RD AMENDMENT ACT 1992
+      </text>
+    </g>
+
+    <!-- Vintage Golden Spectacles on top of books -->
+    <g transform="translate(130, -35)" stroke="#FDE047" stroke-width="3" fill="none" opacity="0.95">
+      <circle cx="40" cy="20" r="22" stroke-width="3.5" fill="#FFFFFF" fill-opacity="0.1" />
+      <circle cx="110" cy="20" r="22" stroke-width="3.5" fill="#FFFFFF" fill-opacity="0.1" />
+      <path d="M62 20 Q75 12 88 20" stroke-width="3" />
+      <path d="M18 18 L-5 14" stroke-width="3" />
+      <path d="M132 18 L155 14" stroke-width="3" />
+    </g>
+
+    <!-- Gold Luxury Fountain Pen -->
+    <g transform="translate(20, 210) rotate(-12)" filter="url(#shadowHeavy)">
+      <rect x="0" y="0" width="180" height="12" rx="6" fill="#0F172A" stroke="#FDE047" stroke-width="2" />
+      <polygon points="180,0 205,6 180,12" fill="#F59E0B" />
+      <rect x="50" y="0" width="8" height="12" fill="#FDE047" />
+    </g>
+  </g>
+
+  <!-- 7. CENTER TOP: DOME ICON & COMPLETE NOTES SUBHEADER -->
+  <g transform="translate(640, 75)" text-anchor="middle">
+    <!-- Parliament Dome Icon -->
+    <g transform="translate(-18, -42) scale(1.5)" fill="#FFFFFF">
+      <path d="M12 2C8 2 5 5 5 8v2h14V8c0-3-3-6-7-6zm-8 10h16v2H4zm2 4h12v4H6z" />
+    </g>
+    <!-- Lines flanking COMPLETE NOTES -->
+    <line x1="-280" y1="2" x2="-140" y2="2" stroke="#64748B" stroke-width="2" />
+    <line x1="140" y1="2" x2="280" y2="2" stroke="#64748B" stroke-width="2" />
+    <text x="0" y="8" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" letter-spacing="5">
+      PART IX & IX-A • LOCAL GOV
+    </text>
+  </g>
+
+  <!-- 8. CENTER MAIN TITLE: 2-TONE LUXURY TYPOGRAPHY -->
+  <g transform="translate(640, 185)" text-anchor="middle" filter="url(#textGlow)">
+    <!-- Line 1 (White Serif) -->
+    <text x="0" y="0" fill="#FFFFFF" font-family="'Times New Roman', Georgia, serif" font-size="76" font-weight="900" letter-spacing="3">
+      PANCHAYATI
+    </text>
+
+    <!-- Line 2 (Golden Serif) -->
+    <text x="0" y="82" fill="url(#goldTextGrad)" font-family="'Times New Roman', Georgia, serif" font-size="86" font-weight="900" letter-spacing="4">
+      RAJ
+    </text>
+  </g>
+
+  <!-- 9. CENTER: TAGLINE & RIBBON PILL -->
+  <g transform="translate(640, 310)" text-anchor="middle">
+    <!-- Tagline (CONSTITUTION • GOVERNANCE • DEMOCRACY style) -->
+    <text x="0" y="0" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" letter-spacing="3.5">
+      73RD & 74TH AMENDMENTS • GRAM SABHA • 3-TIER SYSTEM
+    </text>
+
+    <!-- Golden Ribbon Pill -->
+    <g transform="translate(-210, 22)">
+      <polygon points="0,20 15,0 405,0 420,20 405,40 15,40" fill="url(#ribbonGrad)" filter="url(#shadowHeavy)" />
+      <text x="210" y="26" fill="#0F172A" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="900" letter-spacing="2" text-anchor="middle">
+        📖 BALWANT RAI MEHTA COMMITTEE
+      </text>
+    </g>
+  </g>
+
+  <!-- 10. CENTER BOTTOM: 4 CIRCULAR FEATURE BADGES -->
+  <g transform="translate(640, 425)" text-anchor="middle">
+    <!-- Badge 1: Clear Concepts -->
+    <g transform="translate(-210, 0)">
+      <circle cx="0" cy="0" r="28" fill="#0F172A" stroke="#38BDF8" stroke-width="2.5" />
+      <text x="0" y="8" font-size="20">📖</text>
+      <text x="0" y="44" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700">Clear</text>
+      <text x="0" y="58" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600">Concepts</text>
+    </g>
+
+    <!-- Badge 2: Articles & Amendments -->
+    <g transform="translate(-70, 0)">
+      <circle cx="0" cy="0" r="28" fill="#0F172A" stroke="#F59E0B" stroke-width="2.5" />
+      <text x="0" y="8" font-size="20">⚖️</text>
+      <text x="0" y="44" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700">Articles &amp;</text>
+      <text x="0" y="58" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600">Amendments</text>
+    </g>
+
+    <!-- Badge 3: Institutions & Functions -->
+    <g transform="translate(70, 0)">
+      <circle cx="0" cy="0" r="28" fill="#0F172A" stroke="#10B981" stroke-width="2.5" />
+      <text x="0" y="8" font-size="20">🏛️</text>
+      <text x="0" y="44" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700">Institutions &amp;</text>
+      <text x="0" y="58" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600">Functions</text>
+    </g>
+
+    <!-- Badge 4: Practice MCQs -->
+    <g transform="translate(210, 0)">
+      <circle cx="0" cy="0" r="28" fill="#0F172A" stroke="#A855F7" stroke-width="2.5" />
+      <text x="0" y="8" font-size="20">🎯</text>
+      <text x="0" y="44" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700">Chapter</text>
+      <text x="0" y="58" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600">Assessment</text>
+    </g>
+  </g>
+
+  <!-- 11. BOTTOM GOLD EMBOSSED STRIP & SEAL -->
+  <g transform="translate(640, 670)">
+    <line x1="-640" y1="0" x2="640" y2="0" stroke="url(#goldTextGrad)" stroke-width="3" />
+    <circle cx="0" cy="0" r="22" fill="#0F172A" stroke="url(#goldTextGrad)" stroke-width="3" />
+    <text x="0" y="6" font-size="16" text-anchor="middle">📖</text>
+  </g>
+</svg>

@@ -1,0 +1,731 @@
+import fs from 'fs';
+import path from 'path';
+
+const assetsDir = path.join(process.cwd(), 'android_app', 'app', 'src', 'main', 'assets', 'www');
+fs.mkdirSync(assetsDir, { recursive: true });
+
+console.log('🚀 PACKAGING STANDALONE EMBEDDED MOBILE APP...');
+
+// 1. Read app_data.json and write app_data.js
+const appDataRaw = fs.readFileSync(path.join(assetsDir, 'app_data.json'), 'utf8');
+fs.writeFileSync(path.join(assetsDir, 'app_data.js'), `window.APP_DATA = ${appDataRaw};`);
+
+// 2. Build index.html
+const indexHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>WB Decoded — Complete Mock Test Platform</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#2563EB',
+            brandDark: '#1E40AF',
+            navy: '#0F172A',
+            emerald: { 500: '#10B981', 600: '#059669', 700: '#047857' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { -webkit-tap-highlight-color: transparent; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .font-bengali { font-family: 'Akaash', 'Noto Sans Bengali', 'SolaimanLipi', sans-serif; }
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased select-none">
+
+  <!-- APP SHELL CONTAINER -->
+  <div id="app" class="min-h-screen flex flex-col max-w-lg mx-auto bg-white shadow-2xl relative">
+    <!-- Dynamic Views are injected here -->
+  </div>
+
+  <!-- LOAD EMBEDDED DATA -->
+  <script src="app_data.js"></script>
+
+  <!-- STANDALONE APP ENGINE -->
+  <script>
+    // State Manager
+    const state = {
+      view: 'home', // home, practice, test, result, attempts
+      selectedExam: null,
+      selectedSubject: null,
+      selectedChapter: null,
+      currentMock: null,
+      mockQuestions: [],
+      currentQIndex: 0,
+      userAnswers: {}, // { qIndex: { selectedOpt: 'A', status: 'answered' | 'review' } }
+      timeRemaining: 0,
+      timerInterval: null,
+      lang: 'en', // en | bn
+      testStartTime: 0,
+      lastTestResult: null,
+      resultFilter: 'all', // all, correct, wrong, skipped
+      weaknessFilter: 'weak'
+    };
+
+    // Helper: Get Storage Attempts
+    function getStoredAttempts() {
+      try {
+        return JSON.parse(localStorage.getItem('wb_decoded_attempts') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveAttempt(attempt) {
+      const list = getStoredAttempts();
+      list.unshift(attempt);
+      localStorage.setItem('wb_decoded_attempts', JSON.stringify(list.slice(0, 50)));
+    }
+
+    // ----------------------------------------------------
+    // ROUTER / RENDER CONTROLLER
+    // ----------------------------------------------------
+    function navigateTo(viewName, params = {}) {
+      state.view = viewName;
+      Object.assign(state, params);
+      window.scrollTo(0, 0);
+      renderApp();
+    }
+
+    function renderApp() {
+      const container = document.getElementById('app');
+      if (state.view === 'home') container.innerHTML = renderHome();
+      else if (state.view === 'practice') container.innerHTML = renderPractice();
+      else if (state.view === 'test') container.innerHTML = renderTest();
+      else if (state.view === 'result') container.innerHTML = renderResult();
+      else if (state.view === 'attempts') container.innerHTML = renderAttempts();
+    }
+
+    // ----------------------------------------------------
+    // VIEW 1: HOME SCREEN
+    // ----------------------------------------------------
+    function renderHome() {
+      const exams = window.APP_DATA.exams || [];
+      const subjects = window.APP_DATA.subjects || [];
+      const attempts = getStoredAttempts();
+
+      return \`
+        <!-- Top Sticky Header -->
+        <header class="sticky top-0 z-40 bg-slate-900 text-white px-4 py-3.5 flex items-center justify-between shadow-md">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center font-black text-sm shadow-inner">
+              অ
+            </div>
+            <div>
+              <h1 class="font-black text-sm tracking-tight leading-tight">WB DECODED</h1>
+              <p class="text-[10px] text-blue-300 font-bold">100% Offline CBT Test Platform</p>
+            </div>
+          </div>
+          <button onclick="navigateTo('attempts')" class="px-3 py-1 rounded-xl bg-slate-800 text-slate-200 hover:text-white border border-slate-700 text-xs font-bold flex items-center gap-1.5">
+            <span>📊 History (\${attempts.length})</span>
+          </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-4 space-y-5 pb-20">
+          
+          <!-- Hero Banner -->
+          <div class="rounded-3xl bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-800 text-white p-5 shadow-lg space-y-3 relative overflow-hidden">
+            <div class="absolute -right-4 -bottom-4 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+            <span class="text-[10px] font-black uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full inline-block">
+              Standalone Mobile Edition
+            </span>
+            <h2 class="text-xl font-black leading-tight">West Bengal Competitive Exam Mock Arena</h2>
+            <p class="text-xs text-blue-100 font-medium">4,574+ Verified Tests • 0% Repeated Questions • Instant Ranking &amp; Formulas</p>
+            <div class="pt-1 flex gap-2">
+              <button onclick="startQuickFullMock('mock-wbcs-full-001')" class="flex-1 py-2.5 px-3 rounded-2xl bg-white text-blue-900 font-black text-xs shadow-sm active:scale-95 transition-all text-center">
+                🎯 WBCS Full Mock &rarr;
+              </button>
+              <button onclick="navigateTo('practice')" class="flex-1 py-2.5 px-3 rounded-2xl bg-blue-900/60 border border-white/20 text-white font-black text-xs active:scale-95 transition-all text-center">
+                📚 Chapter Drills
+              </button>
+            </div>
+          </div>
+
+          <!-- Target Exams Strip -->
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-black uppercase tracking-wider text-slate-500">Choose Target Exam</h3>
+              <span class="text-[11px] font-bold text-blue-600">\${exams.length} Exams</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2.5">
+              \${exams.slice(0, 6).map(e => \`
+                <div onclick="selectExamAndShowMocks('\${e.id}')" class="p-3.5 rounded-2xl bg-white border border-slate-200 hover:border-blue-500 shadow-xs cursor-pointer active:scale-98 transition-all space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-lg">\${e.icon || '🏛️'}</span>
+                    <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-blue-50 text-blue-700">PRELIMS</span>
+                  </div>
+                  <h4 class="font-extrabold text-xs text-slate-900 leading-tight">\${e.name}</h4>
+                  <p class="text-[10px] text-slate-400 font-bold">\${e.authority}</p>
+                </div>
+              \`).join('')}
+            </div>
+          </div>
+
+          <!-- Subject Practice Grid -->
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-black uppercase tracking-wider text-slate-500">12 Core Syllabus Subjects</h3>
+              <button onclick="navigateTo('practice')" class="text-xs font-extrabold text-blue-600">View All &rarr;</button>
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+              \${subjects.map(s => \`
+                <div onclick="startSubjectPractice('\${s.id}')" class="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-1 cursor-pointer active:scale-95 transition-all">
+                  <span class="text-xl block">\${s.icon || '📖'}</span>
+                  <span class="font-extrabold text-[11px] text-slate-800 block truncate">\${s.name}</span>
+                </div>
+              \`).join('')}
+            </div>
+          </div>
+
+        </main>
+
+        <!-- Fixed Bottom Navigation Bar -->
+        <nav class="fixed bottom-0 left-0 right-0 max-w-lg mx-auto bg-white border-t border-slate-200 px-6 py-2.5 flex items-center justify-around z-40 shadow-lg">
+          <button onclick="navigateTo('home')" class="flex flex-col items-center gap-0.5 text-blue-600">
+            <span class="text-base">🏠</span>
+            <span class="text-[10px] font-black">Home</span>
+          </button>
+          <button onclick="navigateTo('practice')" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-900">
+            <span class="text-base">📚</span>
+            <span class="text-[10px] font-bold">Chapter Drill</span>
+          </button>
+          <button onclick="navigateTo('attempts')" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-900">
+            <span class="text-base">📊</span>
+            <span class="text-[10px] font-bold">Attempts</span>
+          </button>
+        </nav>
+      \`;
+    }
+
+    // ----------------------------------------------------
+    // VIEW 2: CHAPTER DRILLS
+    // ----------------------------------------------------
+    function renderPractice() {
+      const subjects = window.APP_DATA.subjects || [];
+      const chapters = window.APP_DATA.chapters || [];
+      const selectedSubj = state.selectedSubject || subjects[0]?.id;
+      const filteredChapters = chapters.filter(c => c.subject_id === selectedSubj);
+
+      return \`
+        <header class="sticky top-0 z-40 bg-slate-900 text-white px-4 py-3.5 flex items-center justify-between shadow-md">
+          <div class="flex items-center space-x-2.5">
+            <button onclick="navigateTo('home')" class="p-1 rounded-lg text-slate-300 hover:text-white font-bold">&larr; Back</button>
+            <h1 class="font-black text-sm">Chapter Practice Arena</h1>
+          </div>
+        </header>
+
+        <main class="flex-1 p-4 space-y-4 pb-20">
+          <!-- Subject Selector Horizontal Strip -->
+          <div class="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+            \${subjects.map(s => \`
+              <button onclick="state.selectedSubject = '\${s.id}'; renderApp();" class="px-3 py-1.5 rounded-xl font-bold text-xs whitespace-nowrap transition-all \${
+                selectedSubj === s.id ? 'bg-blue-600 text-white shadow-xs' : 'bg-white border border-slate-200 text-slate-700'
+              }">
+                \${s.icon || ''} \${s.name}
+              </button>
+            \`).join('')}
+          </div>
+
+          <!-- Chapters List -->
+          <div class="space-y-2">
+            <h3 class="text-xs font-black uppercase text-slate-400">Chapters &amp; Mock Tests</h3>
+            \${filteredChapters.map((chap, idx) => \`
+              <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center justify-between gap-3">
+                <div class="space-y-0.5 flex-1">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-5 h-5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-black flex items-center justify-center">
+                      \${idx + 1}
+                    </span>
+                    <h4 class="font-extrabold text-xs text-slate-900">\${chap.name}</h4>
+                  </div>
+                  <p class="text-[10px] text-slate-400 pl-6">25 Qs • 25 Mins • 0% Repeat Guarantee</p>
+                </div>
+                <button onclick="startChapterTest('\${selectedSubj}', '\${chap.id}', '\${chap.name}')" class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-xs shadow-xs shrink-0">
+                  Start &rarr;
+                </button>
+              </div>
+            \`).join('')}
+          </div>
+        </main>
+      \`;
+    }
+
+    // ----------------------------------------------------
+    // TEST LAUNCHERS
+    // ----------------------------------------------------
+    function startQuickFullMock(mockId) {
+      const mock = window.APP_DATA.mockTests.find(m => m.id === mockId) || window.APP_DATA.mockTests[0];
+      launchMock(mock);
+    }
+
+    function selectExamAndShowMocks(examId) {
+      const mocks = window.APP_DATA.mockTests.filter(m => m.exam_id === examId);
+      if (mocks.length > 0) {
+        launchMock(mocks[0]);
+      } else {
+        alert('Launching full test for exam...');
+        startQuickFullMock('mock-wbcs-full-001');
+      }
+    }
+
+    function startSubjectPractice(subjId) {
+      state.selectedSubject = subjId;
+      navigateTo('practice');
+    }
+
+    function startChapterTest(subjId, chapId, chapName) {
+      // Find all questions belonging to this subject
+      const allQs = window.APP_DATA.questions.filter(q => q.subject_id === subjId);
+      const shuffled = [...allQs].sort(() => 0.5 - Math.random()).slice(0, 25);
+      
+      const customMock = {
+        id: 'chap-test-' + chapId,
+        title: chapName + ' — Practice Test',
+        title_bn: chapName + ' চ্যাপ্টার টেস্ট',
+        mock_type: 'Chapter-Test',
+        duration_mins: 25,
+        total_marks: shuffled.length,
+        total_questions: shuffled.length,
+        negative_marking: 0.33,
+        q_ids: shuffled.map(q => q.id)
+      };
+
+      launchMock(customMock, shuffled);
+    }
+
+    function launchMock(mock, explicitQs = null) {
+      state.currentMock = mock;
+      if (explicitQs) {
+        state.mockQuestions = explicitQs;
+      } else {
+        const qMap = {};
+        window.APP_DATA.questions.forEach(q => qMap[q.id] = q);
+        state.mockQuestions = (mock.q_ids || []).map(id => qMap[id]).filter(Boolean);
+        if (state.mockQuestions.length === 0) {
+          state.mockQuestions = window.APP_DATA.questions.slice(0, mock.total_questions || 25);
+        }
+      }
+
+      state.currentQIndex = 0;
+      state.userAnswers = {};
+      state.timeRemaining = (mock.duration_mins || 60) * 60;
+      state.testStartTime = Date.now();
+
+      if (state.timerInterval) clearInterval(state.timerInterval);
+      state.timerInterval = setInterval(() => {
+        state.timeRemaining--;
+        const timerEl = document.getElementById('cbt-timer');
+        if (timerEl) {
+          const m = Math.floor(state.timeRemaining / 60);
+          const s = state.timeRemaining % 60;
+          timerEl.innerText = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+        }
+        if (state.timeRemaining <= 0) {
+          clearInterval(state.timerInterval);
+          finishTest();
+        }
+      }, 1000);
+
+      navigateTo('test');
+    }
+
+    // ----------------------------------------------------
+    // VIEW 3: CBT TEST SCREEN (Single-Window Fixed Action Bar)
+    // ----------------------------------------------------
+    function renderTest() {
+      const q = state.mockQuestions[state.currentQIndex] || {};
+      const totalQ = state.mockQuestions.length;
+      const curAns = state.userAnswers[state.currentQIndex]?.selectedOpt || null;
+
+      const m = Math.floor(state.timeRemaining / 60);
+      const s = state.timeRemaining % 60;
+      const timeFormatted = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+
+      const qText = (state.lang === 'bn' && q.question_text_bn) ? q.question_text_bn : q.question_text;
+
+      return \`
+        <div class="h-[100dvh] max-h-[100dvh] flex flex-col bg-slate-50 overflow-hidden select-none">
+          
+          <!-- Fixed Top Test Header Strip -->
+          <header class="flex-none bg-slate-900 text-white px-3.5 py-2.5 flex items-center justify-between shadow-md z-30">
+            <div>
+              <span class="text-[10px] font-black text-blue-400 uppercase tracking-wide block">
+                Q \${state.currentQIndex + 1} / \${totalQ}
+              </span>
+              <h2 class="font-extrabold text-xs truncate max-w-[180px]">\${state.currentMock.title}</h2>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button onclick="toggleLang()" class="px-2 py-0.5 rounded-md bg-slate-800 text-blue-300 font-bold text-[10px] border border-slate-700">
+                \${state.lang === 'en' ? 'বাংলা' : 'English'}
+              </button>
+
+              <div class="flex items-center gap-1 bg-red-950/80 border border-red-800/80 px-2.5 py-1 rounded-xl text-red-300 font-mono font-black text-xs">
+                <span>⏱️</span>
+                <span id="cbt-timer">\${timeFormatted}</span>
+              </div>
+
+              <button onclick="confirmSubmitModal()" class="px-3 py-1 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs shadow-xs">
+                Submit
+              </button>
+            </div>
+          </header>
+
+          <!-- Scrollable Question Body -->
+          <main class="flex-1 overflow-y-auto p-4 space-y-4 pb-28">
+            <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm space-y-4">
+              
+              <!-- Question Text -->
+              <div class="font-bold text-sm sm:text-base text-slate-900 leading-relaxed">
+                \${qText}
+              </div>
+
+              <!-- Options -->
+              <div class="space-y-2.5 pt-2">
+                \${['A', 'B', 'C', 'D'].map(optKey => {
+                  const optText = (state.lang === 'bn' && q['option_' + optKey.toLowerCase() + '_bn']) 
+                    ? q['option_' + optKey.toLowerCase() + '_bn'] 
+                    : q['option_' + optKey.toLowerCase()];
+                  const isSelected = curAns === optKey;
+
+                  return \`
+                    <div onclick="selectOption('\${optKey}')" class="p-3.5 rounded-2xl border text-xs sm:text-sm flex items-center justify-between cursor-pointer active:scale-98 transition-all \${
+                      isSelected ? 'border-blue-600 bg-blue-50/90 text-blue-950 font-bold shadow-xs' : 'border-slate-200 bg-white text-slate-800'
+                    }">
+                      <div class="flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-full flex items-center justify-center font-black text-xs \${
+                          isSelected ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600'
+                        }">\${optKey}</span>
+                        <span>\${optText || ''}</span>
+                      </div>
+                      \${isSelected ? '<span class="text-blue-600 font-black text-sm">✓</span>' : ''}
+                    </div>
+                  \`;
+                }).join('')}
+              </div>
+
+            </div>
+          </main>
+
+          <!-- Fixed Bottom Action Bar (Never scrolls out of view) -->
+          <footer class="fixed bottom-0 left-0 right-0 max-w-lg mx-auto bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 z-40 flex items-center justify-between gap-2 shadow-2xl">
+            <button onclick="clearResponse()" class="px-3 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-bold text-xs active:bg-slate-100">
+              Clear
+            </button>
+
+            <button onclick="prevQuestion()" \${state.currentQIndex === 0 ? 'disabled class="opacity-40 px-3 py-2.5 rounded-xl bg-slate-100 text-slate-400 font-bold text-xs"' : 'class="px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-extrabold text-xs active:scale-95 transition-all"'}>
+              &larr; Prev
+            </button>
+
+            <button onclick="nextQuestion()" class="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-xs shadow-md active:scale-95 transition-all flex items-center justify-center gap-1.5">
+              <span>\${state.currentQIndex === totalQ - 1 ? 'Save &amp; Finish' : 'Save &amp; Next'}</span>
+              <span>&rarr;</span>
+            </button>
+          </footer>
+
+        </div>
+      \`;
+    }
+
+    function toggleLang() {
+      state.lang = state.lang === 'en' ? 'bn' : 'en';
+      renderApp();
+    }
+
+    function selectOption(optKey) {
+      if (!state.userAnswers[state.currentQIndex]) {
+        state.userAnswers[state.currentQIndex] = {};
+      }
+      state.userAnswers[state.currentQIndex].selectedOpt = optKey;
+      renderApp();
+    }
+
+    function clearResponse() {
+      if (state.userAnswers[state.currentQIndex]) {
+        delete state.userAnswers[state.currentQIndex].selectedOpt;
+      }
+      renderApp();
+    }
+
+    function prevQuestion() {
+      if (state.currentQIndex > 0) {
+        state.currentQIndex--;
+        renderApp();
+      }
+    }
+
+    function nextQuestion() {
+      if (state.currentQIndex < state.mockQuestions.length - 1) {
+        state.currentQIndex++;
+        renderApp();
+      } else {
+        confirmSubmitModal();
+      }
+    }
+
+    function confirmSubmitModal() {
+      const answered = Object.values(state.userAnswers).filter(a => a.selectedOpt).length;
+      const total = state.mockQuestions.length;
+      if (confirm('Submit test? Answered: ' + answered + '/' + total + ' questions.')) {
+        if (state.timerInterval) clearInterval(state.timerInterval);
+        finishTest();
+      }
+    }
+
+    // ----------------------------------------------------
+    // TEST COMPLETION & RESULT CALCULATOR
+    // ----------------------------------------------------
+    function finishTest() {
+      let correct = 0;
+      let wrong = 0;
+      let skipped = 0;
+      const detailedList = [];
+
+      state.mockQuestions.forEach((q, idx) => {
+        const studentChoice = state.userAnswers[idx]?.selectedOpt || null;
+        const isCorrect = studentChoice === q.correct_answer;
+        
+        if (!studentChoice) skipped++;
+        else if (isCorrect) correct++;
+        else wrong++;
+
+        detailedList.push({
+          ...q,
+          studentChoice,
+          isCorrect,
+          isSkipped: !studentChoice
+        });
+      });
+
+      const totalMarks = state.mockQuestions.length;
+      const negMark = state.currentMock.negative_marking || 0.33;
+      const score = Math.max(0, +(correct * 1.0 - wrong * negMark).toFixed(2));
+      const accuracy = (correct + wrong) > 0 ? Math.round((correct / (correct + wrong)) * 100) : 0;
+      const percentile = Math.min(99.4, Math.max(10, +(accuracy * 0.95 + (score / totalMarks) * 5).toFixed(1)));
+
+      const result = {
+        mockTitle: state.currentMock.title,
+        score,
+        totalMarks,
+        correct,
+        wrong,
+        skipped,
+        accuracy,
+        percentile,
+        date: new Date().toLocaleDateString(),
+        questions: detailedList
+      };
+
+      state.lastTestResult = result;
+      saveAttempt({
+        id: 'att-' + Date.now(),
+        mockTitle: result.mockTitle,
+        score: result.score,
+        totalMarks: result.totalMarks,
+        accuracy: result.accuracy,
+        date: result.date
+      });
+
+      navigateTo('result');
+    }
+
+    // ----------------------------------------------------
+    // VIEW 4: RESULT & SUBJECT-SPECIFIC SOLUTIONS
+    // ----------------------------------------------------
+    function renderResult() {
+      const res = state.lastTestResult;
+      if (!res) return renderHome();
+
+      const filtered = res.questions.filter(q => {
+        if (state.resultFilter === 'correct') return q.isCorrect;
+        if (state.resultFilter === 'wrong') return !q.isCorrect && !q.isSkipped;
+        if (state.resultFilter === 'skipped') return q.isSkipped;
+        return true;
+      });
+
+      return \`
+        <header class="sticky top-0 z-40 bg-slate-900 text-white px-4 py-3.5 flex items-center justify-between shadow-md">
+          <div class="flex items-center space-x-2">
+            <button onclick="navigateTo('home')" class="font-bold text-xs text-slate-300 hover:text-white">&larr; Home</button>
+            <h1 class="font-black text-sm">Performance Analysis</h1>
+          </div>
+          <button onclick="startQuickFullMock('mock-wbcs-full-001')" class="px-3 py-1 rounded-xl bg-blue-600 text-white text-xs font-bold">
+            Retake
+          </button>
+        </header>
+
+        <main class="flex-1 p-4 space-y-5 pb-20">
+          
+          <!-- 4 Score Cards -->
+          <div class="grid grid-cols-2 gap-2.5 text-center">
+            <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
+              <span class="text-[10px] font-bold text-slate-400 uppercase">Score</span>
+              <div class="text-xl font-black text-slate-900">\${res.score} <span class="text-xs text-slate-400">/ \${res.totalMarks}</span></div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
+              <span class="text-[10px] font-bold text-slate-400 uppercase">Accuracy</span>
+              <div class="text-xl font-black text-emerald-600">\${res.accuracy}%</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
+              <span class="text-[10px] font-bold text-slate-400 uppercase">State Percentile</span>
+              <div class="text-xl font-black text-purple-600">\${res.percentile}%</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
+              <span class="text-[10px] font-bold text-slate-400 uppercase">Correct / Wrong</span>
+              <div class="text-sm font-black text-slate-800 mt-1">
+                <span class="text-emerald-600">\${res.correct}C</span> • <span class="text-rose-600">\${res.wrong}W</span> • <span class="text-slate-400">\${res.skipped}S</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Solution Filter Strip -->
+          <div class="flex gap-2 overflow-x-auto pb-1">
+            <button onclick="state.resultFilter='all'; renderApp();" class="px-3.5 py-1.5 rounded-xl font-bold text-xs \${state.resultFilter==='all' ? 'bg-slate-900 text-white' : 'bg-white border text-slate-700'}">All (\${res.questions.length})</button>
+            <button onclick="state.resultFilter='correct'; renderApp();" class="px-3.5 py-1.5 rounded-xl font-bold text-xs \${state.resultFilter==='correct' ? 'bg-emerald-600 text-white' : 'bg-white border text-slate-700'}">Correct (\${res.correct})</button>
+            <button onclick="state.resultFilter='wrong'; renderApp();" class="px-3.5 py-1.5 rounded-xl font-bold text-xs \${state.resultFilter==='wrong' ? 'bg-rose-600 text-white' : 'bg-white border text-slate-700'}">Wrong (\${res.wrong})</button>
+            <button onclick="state.resultFilter='skipped'; renderApp();" class="px-3.5 py-1.5 rounded-xl font-bold text-xs \${state.resultFilter==='skipped' ? 'bg-slate-700 text-white' : 'bg-white border text-slate-700'}">Skipped (\${res.skipped})</button>
+          </div>
+
+          <!-- Question Solutions List -->
+          <div class="space-y-4">
+            \${filtered.map((q, idx) => {
+              const subjId = q.subject_id || '';
+              const isMath = subjId.includes('arith') || q.question_text.includes('₹') || q.question_text.includes('Interest');
+              const isEng = subjId.includes('eng') || q.question_text.includes('spelt') || q.question_text.includes('preposition');
+              const isGma = subjId.includes('gma') || q.question_text.includes('sequence');
+              const isBen = subjId.includes('ben') || q.question_text.includes('সন্ধি');
+              const isCdp = subjId.includes('cdp') || q.question_text.includes('Piaget');
+
+              let factTitle = '🏛️ STATIC GK & EXAM FACT:';
+              let factStyle = 'bg-amber-50 border-amber-200 text-amber-950';
+
+              if (isMath) {
+                factTitle = '⚡ SHORTCUT TRICK & CORE FORMULA:';
+                factStyle = 'bg-blue-50 border-blue-200 text-blue-950';
+              } else if (isEng) {
+                factTitle = '📌 GRAMMAR RULE & USAGE NOTE:';
+                factStyle = 'bg-purple-50 border-purple-200 text-purple-950';
+              } else if (isGma) {
+                factTitle = '🧠 LOGICAL PATTERN & SOLVING STRATEGY:';
+                factStyle = 'bg-indigo-50 border-indigo-200 text-indigo-950';
+              } else if (isBen) {
+                factTitle = '📚 বাংলা ব্যাকরণ ও প্রয়োগবিধি:';
+                factStyle = 'bg-emerald-50 border-emerald-200 text-emerald-950';
+              } else if (isCdp) {
+                factTitle = '🎓 PEDAGOGICAL PRINCIPLE & THEORY:';
+                factStyle = 'bg-teal-50 border-teal-200 text-teal-950';
+              }
+
+              return \`
+                <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-xs space-y-3">
+                  <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                    <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-800 text-xs font-black flex items-center justify-center">
+                      \${idx + 1}
+                    </span>
+                    <span class="text-xs font-bold \${q.isCorrect ? 'text-emerald-600' : q.isSkipped ? 'text-slate-400' : 'text-rose-600'}">
+                      \${q.isCorrect ? '✓ Correct (+1.0)' : q.isSkipped ? '⚪ Unattempted' : '✗ Incorrect (-0.33)'}
+                    </span>
+                  </div>
+
+                  <p class="font-bold text-xs sm:text-sm text-slate-900">\${q.question_text}</p>
+
+                  <div class="space-y-1.5 pt-1">
+                    \${['A', 'B', 'C', 'D'].map(k => {
+                      const isCorrectOpt = q.correct_answer === k;
+                      const isStudentOpt = q.studentChoice === k;
+                      let optClass = 'bg-slate-50 border-slate-200 text-slate-700';
+                      if (isCorrectOpt) optClass = 'bg-emerald-50 border-emerald-500 text-emerald-950 font-bold';
+                      else if (isStudentOpt && !q.isCorrect) optClass = 'bg-rose-50 border-rose-500 text-rose-950 font-bold';
+
+                      return \`
+                        <div class="p-2.5 rounded-xl border text-xs flex items-center justify-between \${optClass}">
+                          <span><strong>\${k}.</strong> \${q['option_' + k.toLowerCase()]}</span>
+                          \${isCorrectOpt ? '<span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-emerald-600 text-white">CORRECT</span>' : ''}
+                          \${isStudentOpt && !isCorrectOpt ? '<span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-rose-600 text-white">YOUR ANSWER</span>' : ''}
+                        </div>
+                      \`;
+                    }).join('')}
+                  </div>
+
+                  <!-- Subject-Specific Fact Box -->
+                  <div class="p-3 rounded-2xl \${factStyle} border text-xs space-y-1 mt-2">
+                    <strong>\${factTitle}</strong>
+                    <p class="text-[11px] leading-relaxed">\${q.important_fact || q.explanation || 'Standard official curriculum explanation.'}</p>
+                    \${q.explanation_bn ? '<p class="text-[11px] font-bengali pt-1 border-t border-slate-200"><strong>📌 বাংলা:</strong> ' + q.explanation_bn + '</p>' : ''}
+                  </div>
+
+                </div>
+              \`;
+            }).join('')}
+          </div>
+
+        </main>
+      \`;
+    }
+
+    // ----------------------------------------------------
+    // VIEW 5: ATTEMPTED MOCKS HISTORY
+    // ----------------------------------------------------
+    function renderAttempts() {
+      const attempts = getStoredAttempts();
+
+      return \`
+        <header class="sticky top-0 z-40 bg-slate-900 text-white px-4 py-3.5 flex items-center justify-between shadow-md">
+          <div class="flex items-center space-x-2">
+            <button onclick="navigateTo('home')" class="font-bold text-xs text-slate-300 hover:text-white">&larr; Back</button>
+            <h1 class="font-black text-sm">Attempt History</h1>
+          </div>
+        </header>
+
+        <main class="flex-1 p-4 space-y-3 pb-20">
+          \${attempts.length === 0 ? \`
+            <div class="text-center py-16 space-y-3">
+              <span class="text-4xl block">📝</span>
+              <h3 class="font-extrabold text-sm text-slate-800">No mock tests attempted yet</h3>
+              <p class="text-xs text-slate-500">Take your first CBT mock test to see your score analysis.</p>
+              <button onclick="startQuickFullMock('mock-wbcs-full-001')" class="px-5 py-2.5 rounded-2xl bg-blue-600 text-white font-bold text-xs">
+                Start WBCS Mock Now &rarr;
+              </button>
+            </div>
+          \` : attempts.map((a, idx) => \`
+            <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 font-bold">\${a.date}</span>
+                <h4 class="font-black text-xs text-slate-900">\${a.mockTitle}</h4>
+                <p class="text-[11px] text-slate-500 font-semibold mt-0.5">
+                  Score: <strong class="text-slate-900">\${a.score}/\${a.totalMarks}</strong> • Accuracy: <strong class="text-emerald-600">\${a.accuracy}%</strong>
+                </p>
+              </div>
+              <button onclick="startQuickFullMock('mock-wbcs-full-001')" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">
+                Retake
+              </button>
+            </div>
+          \`).join('')}
+        </main>
+      \`;
+    }
+
+    // Initialize on launch
+    window.addEventListener('DOMContentLoaded', () => {
+      renderApp();
+    });
+  </script>
+
+</body>
+</html>
+`;
+
+fs.writeFileSync(path.join(assetsDir, 'index.html'), indexHtml);
+console.log('✅ Created standalone embedded index.html successfully!');

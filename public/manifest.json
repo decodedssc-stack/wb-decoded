@@ -1,0 +1,16 @@
+{
+  "name": "WB Decoded — WB Govt Exam Mock Platform",
+  "short_name": "WB Decoded",
+  "description": "Premium PYQ, Mock Test, and Analytics Platform for West Bengal Competitive Exams",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07101E",
+  "theme_color": "#07101E",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

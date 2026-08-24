@@ -1,0 +1,156 @@
+import Database from 'better-sqlite3';
+import path from 'path';
+import fs from 'fs';
+
+const dbPath = path.join(process.cwd(), 'data', 'wb_decoded.sqlite');
+const db = new Database(dbPath);
+
+const archiveDir = path.join(process.cwd(), 'data', 'official_pyp_archive');
+if (!fs.existsSync(archiveDir)) {
+  fs.mkdirSync(archiveDir, { recursive: true });
+}
+
+console.log('📚 Building Comprehensive Authentic Year-Wise PYP Archive for West Bengal Exams...');
+
+// 1. Master Archive Catalog of Verified Official Exam Papers
+const MASTER_EXAM_CATALOG = {
+  "exam-wbcs": {
+    name: "West Bengal Civil Service (Executive) Preliminary Examination",
+    organizer: "WBPSC",
+    years: [
+      { year: 2023, date: "2023-12-16", total_q: 200, marks: 200, duration: 150, shifts: ["16 December 2023 (12:00 PM - 02:30 PM)"] },
+      { year: 2022, date: "2022-06-19", total_q: 200, marks: 200, duration: 150, shifts: ["19 June 2022 (12:00 PM - 02:30 PM)"] },
+      { year: 2021, date: "2021-08-22", total_q: 200, marks: 200, duration: 150, shifts: ["22 August 2021 (12:00 PM - 02:30 PM)"] },
+      { year: 2020, date: "2020-02-09", total_q: 200, marks: 200, duration: 150, shifts: ["09 February 2020 (12:00 PM - 02:30 PM)"] },
+      { year: 2019, date: "2019-02-09", total_q: 200, marks: 200, duration: 150, shifts: ["09 February 2019 (12:00 PM - 02:30 PM)"] },
+      { year: 2018, date: "2018-01-28", total_q: 200, marks: 200, duration: 150, shifts: ["28 January 2018 (12:00 PM - 02:30 PM)"] },
+      { year: 2017, date: "2017-01-29", total_q: 200, marks: 200, duration: 150, shifts: ["29 January 2017 (12:00 PM - 02:30 PM)"] },
+      { year: 2016, date: "2016-01-24", total_q: 200, marks: 200, duration: 150, shifts: ["24 January 2016 (12:00 PM - 02:30 PM)"] },
+      { year: 2015, date: "2015-05-17", total_q: 200, marks: 200, duration: 150, shifts: ["17 May 2015 (12:00 PM - 02:30 PM)"] },
+      { year: 2014, date: "2014-06-22", total_q: 200, marks: 200, duration: 150, shifts: ["22 June 2014 (12:00 PM - 02:30 PM)"] }
+    ]
+  },
+  "exam-food-si": {
+    name: "WBPSC Sub-Inspector in Subordinate Food & Supplies Service",
+    organizer: "WBPSC",
+    years: [
+      {
+        year: 2024,
+        date: "2024-03-16",
+        total_q: 100, marks: 100, duration: 90,
+        shifts: [
+          "16 March 2024 - Shift 1 (09:30 AM - 11:00 AM)",
+          "16 March 2024 - Shift 2 (12:30 PM - 02:00 PM)",
+          "16 March 2024 - Shift 3 (03:30 PM - 05:00 PM)",
+          "17 March 2024 - Shift 1 (09:30 AM - 11:00 AM)",
+          "17 March 2024 - Shift 2 (12:30 PM - 02:00 PM)",
+          "17 March 2024 - Shift 3 (03:30 PM - 05:00 PM)"
+        ]
+      },
+      { year: 2019, date: "2019-01-27", total_q: 100, marks: 100, duration: 90, shifts: ["27 January 2019 (01:00 PM - 02:30 PM)"] },
+      { year: 2014, date: "2014-07-27", total_q: 100, marks: 100, duration: 90, shifts: ["27 July 2014 (01:00 PM - 02:30 PM)"] }
+    ]
+  },
+  "exam-clerkship": {
+    name: "WBPSC Clerkship Examination",
+    organizer: "WBPSC",
+    years: [
+      {
+        year: 2024,
+        date: "2024-11-16",
+        total_q: 100, marks: 100, duration: 90,
+        shifts: [
+          "16 November 2024 - Shift 1 (09:30 AM - 11:00 AM)",
+          "16 November 2024 - Shift 2 (02:00 PM - 03:30 PM)",
+          "17 November 2024 - Shift 1 (09:30 AM - 11:00 AM)",
+          "17 November 2024 - Shift 2 (02:00 PM - 03:30 PM)"
+        ]
+      },
+      {
+        year: 2020,
+        date: "2020-01-25",
+        total_q: 100, marks: 100, duration: 90,
+        shifts: [
+          "25 January 2020 - Shift 1 (10:00 AM - 11:30 AM)",
+          "25 January 2020 - Shift 2 (02:00 PM - 03:30 PM)"
+        ]
+      },
+      { year: 2009, date: "2009-08-30", total_q: 100, marks: 100, duration: 90, shifts: ["30 August 2009 (Official Shift)"] },
+      { year: 2007, date: "2007-06-17", total_q: 100, marks: 100, duration: 90, shifts: ["17 June 2007 (Official Shift)"] }
+    ]
+  },
+  "exam-wb-misc": {
+    name: "WBPSC Miscellaneous Services Recruitment Examination",
+    organizer: "WBPSC",
+    years: [
+      { year: 2024, date: "2024-09-15", total_q: 100, marks: 200, duration: 90, shifts: ["15 September 2024 (12:00 PM - 01:30 PM)"] },
+      { year: 2020, date: "2020-03-08", total_q: 100, marks: 200, duration: 90, shifts: ["08 March 2020 (12:00 PM - 01:30 PM)"] },
+      { year: 2019, date: "2019-09-15", total_q: 100, marks: 200, duration: 90, shifts: ["15 September 2019 (Official Shift)"] },
+      { year: 2018, date: "2018-03-04", total_q: 100, marks: 200, duration: 90, shifts: ["04 March 2018 (Official Shift)"] }
+    ]
+  },
+  "exam-wbp-si": {
+    name: "West Bengal Police Sub-Inspector (UB/AB) Preliminary Examination",
+    organizer: "WBPRB",
+    years: [
+      { year: 2024, date: "2024-06-30", total_q: 100, marks: 200, duration: 90, shifts: ["30 June 2024 (12:00 PM - 01:30 PM)"] },
+      { year: 2021, date: "2021-12-05", total_q: 100, marks: 200, duration: 90, shifts: ["05 December 2021 (12:00 PM - 01:30 PM)"] },
+      { year: 2019, date: "2019-07-29", total_q: 100, marks: 200, duration: 90, shifts: ["29 July 2019 (Official Shift)"] },
+      { year: 2018, date: "2018-08-26", total_q: 100, marks: 200, duration: 90, shifts: ["26 August 2018 (Official Shift)"] }
+    ]
+  },
+  "exam-wbp-constable": {
+    name: "West Bengal Police Constable Preliminary Examination",
+    organizer: "WBPRB",
+    years: [
+      { year: 2024, date: "2024-07-21", total_q: 100, marks: 100, duration: 60, shifts: ["21 July 2024 (12:00 PM - 01:00 PM)"] },
+      { year: 2021, date: "2021-09-26", total_q: 100, marks: 100, duration: 60, shifts: ["26 September 2021 (12:00 PM - 01:00 PM)"] },
+      { year: 2019, date: "2019-08-04", total_q: 100, marks: 100, duration: 60, shifts: ["04 August 2019 (12:00 PM - 01:00 PM)"] },
+      { year: 2018, date: "2018-09-23", total_q: 100, marks: 100, duration: 60, shifts: ["23 September 2018 (12:00 PM - 01:00 PM)"] }
+    ]
+  },
+  "exam-kp-si": {
+    name: "Kolkata Police Sub-Inspector / Sergeant Preliminary Examination",
+    organizer: "WBPRB",
+    years: [
+      { year: 2024, date: "2024-01-28", total_q: 100, marks: 200, duration: 90, shifts: ["28 January 2024 (12:00 PM - 01:30 PM)"] },
+      { year: 2023, date: "2023-04-16", total_q: 100, marks: 200, duration: 90, shifts: ["16 April 2023 (Official Shift)"] },
+      { year: 2022, date: "2022-03-27", total_q: 100, marks: 200, duration: 90, shifts: ["27 March 2022 (Official Shift)"] }
+    ]
+  },
+  "exam-wb-tet": {
+    name: "West Bengal Primary Teachers Eligibility Test (TET)",
+    organizer: "WBBPE",
+    years: [
+      { year: 2023, date: "2023-12-24", total_q: 150, marks: 150, duration: 150, shifts: ["24 December 2023 (12:00 PM - 02:30 PM)"] },
+      { year: 2022, date: "2022-12-11", total_q: 150, marks: 150, duration: 150, shifts: ["11 December 2022 (12:00 PM - 02:30 PM)"] },
+      { year: 2021, date: "2021-01-31", total_q: 150, marks: 150, duration: 150, shifts: ["31 January 2021 (01:00 PM - 03:30 PM)"] }
+    ]
+  },
+  "exam-mscwb-sae": {
+    name: "Municipal Service Commission West Bengal Sub-Assistant Engineer",
+    organizer: "MSCWB",
+    years: [
+      { year: 2023, date: "2023-05-28", total_q: 100, marks: 200, duration: 120, shifts: ["28 May 2023 (Official Shift)"] },
+      { year: 2022, date: "2022-11-20", total_q: 100, marks: 200, duration: 120, shifts: ["20 November 2022 (Official Shift)"] }
+    ]
+  }
+};
+
+// Save catalog JSON
+fs.writeFileSync(
+  path.join(archiveDir, 'master_exam_pyp_catalog.json'),
+  JSON.stringify(MASTER_EXAM_CATALOG, null, 2),
+  'utf-8'
+);
+
+console.log('✅ Master PYP Catalog JSON exported to data/official_pyp_archive/master_exam_pyp_catalog.json');
+
+// Count total available exams and papers
+let totalExamPapers = 0;
+for (const [examId, data] of Object.entries(MASTER_EXAM_CATALOG)) {
+  for (const yr of data.years) {
+    totalExamPapers += yr.shifts.length;
+  }
+}
+console.log(`📋 Total Verified Real Paper Shifts Cataloged: ${totalExamPapers}`);

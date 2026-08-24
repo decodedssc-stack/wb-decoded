@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+    --tb-teal: #00A389;
+    --tb-blue: #0078FF;
+    --tb-gold: #F59E0B;
+    --tb-bg: #F4F6F8;
+    --tb-dark: #1E293B;
+  }
+
+  html, body {
+    @apply bg-[#F4F6F8] text-[#1E293B] font-sans antialiased min-h-screen selection:bg-[#00A389]/20 selection:text-[#007A66];
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button, a {
+    touch-action: manipulation;
+  }
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #DFD5C8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C8BCAC;
+}
+
+/* Glassmorphic card styling */
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(223, 213, 200, 0.8);
+}
+
+.glass-card-dark {
+  background: rgba(12, 24, 41, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 157, 70, 0.25);
+}
+
+/* Pulsing indicators */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
