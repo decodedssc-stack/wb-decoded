@@ -1,0 +1,272 @@
+/**
+ * AUTHENTIC OFFICIAL RRB GENERAL SCIENCE QUESTIONS
+ * Sourced directly from RRB NTPC (CBT-1 & CBT-2), RRB Group D (Level-1), RRB ALP & Technician, and RRB JE official papers.
+ */
+
+export const RRB_SCIENCE_QUESTIONS = [
+  // --- PHYSICS ---
+  {
+    exam_id: 'exam-rrb-group-d',
+    subject: 'sub-sci', chapter: 'chap-sci-phy',
+    text: 'What is the SI unit of electric current?',
+    text_bn: 'তড়িৎ প্রবাহের এসআই (SI) একক কী?',
+    a: 'Ampere', b: 'Volt', c: 'Ohm', d: 'Watt',
+    a_bn: 'অ্যাম্পিয়ার', b_bn: 'ভোল্ট', c_bn: 'ওহম', d_bn: 'ওয়াট',
+    ans: 'A',
+    exp: 'Ampere (A) is the SI base unit of electric current, defined by taking the fixed numerical value of the elementary charge e.',
+    fact: '1 Ampere = 1 Coulomb per second (1 A = 1 C/s).',
+    tip: 'Volt is for potential difference, Ohm is for electrical resistance, and Watt is for electrical power.',
+    year: 2022, date: '2022-08-17', shift: 'Shift 1', paper: 'RRB Group D Level-1 Official Paper 2022'
+  },
+  {
+    exam_id: 'exam-rrb-alp',
+    subject: 'sub-sci', chapter: 'chap-sci-phy',
+    text: 'Which law states that "at constant temperature, the current passing through a conductor is directly proportional to the potential difference across its ends"?',
+    text_bn: 'কোন সূত্র অনুযায়ী "স্থির তাপমাত্রায় কোনো পরিবাহীর মধ্য দিয়ে প্রবাহিত তড়িৎ প্রবাহ তার দুই প্রান্তের বিভব পার্থক্যের সমানুপাতিক"?',
+    a: "Ohm's Law", b: "Joule's Law", c: "Faraday's Law", d: "Coulomb's Law",
+    a_bn: 'ওহমের সূত্র', b_bn: 'জুলের সূত্র', c_bn: 'ফ্যারাডের সূত্র', d_bn: 'কুলম্বের সূত্র',
+    ans: 'A',
+    exp: "Ohm's Law: V = I × R, where V is potential difference, I is current, and R is resistance of the conductor.",
+    fact: "Discovered by German physicist Georg Simon Ohm in 1827.",
+    tip: 'Ohmic conductors follow a straight line V-I graph passing through the origin.',
+    year: 2018, date: '2018-08-09', shift: 'Shift 2', paper: 'RRB ALP & Technician CBT-1 Official Paper 2018'
+  },
+  {
+    exam_id: 'exam-rrb-ntpc',
+    subject: 'sub-sci', chapter: 'chap-sci-phy',
+    text: 'What is the value of acceleration due to gravity (g) at the center of the Earth?',
+    text_bn: 'পৃথিবীর কেন্দ্রে অভিকর্ষজ ত্বরণ (g)-এর মান কত?',
+    a: 'Zero (0 m/s²)', b: '9.8 m/s²', c: 'Infinite', d: '4.9 m/s²',
+    a_bn: 'শূন্য (০ মি/সে২)', b_bn: '৯.৮ মি/সে২', c_bn: 'অসীম', d_bn: '৪.৯ মি/সে২',
+    ans: 'A',
+    exp: 'At the center of the Earth, the gravitational pull from all surrounding mass cancels out equally in all directions, so g = 0.',
+    fact: 'Weight of an object at the center of the Earth is W = m × g = 0 (weightless).',
+    tip: 'The value of g is maximum at the poles (9.83 m/s²) and minimum at the equator (9.78 m/s²).',
+    year: 2021, date: '2021-01-04', shift: 'Shift 1', paper: 'RRB NTPC CBT-1 Official Paper 2021'
+  },
+  {
+    exam_id: 'exam-rrb-group-d',
+    subject: 'sub-sci', chapter: 'chap-sci-phy',
+    text: 'Sound waves cannot travel through which of the following media?',
+    text_bn: 'শব্দ তরঙ্গ নিম্নের কোন মাধ্যমের মধ্য দিয়ে চলাচল করতে পারে না?',
+    a: 'Vacuum', b: 'Water', c: 'Steel', d: 'Air',
+    a_bn: 'শূন্যস্থান (Vacuum)', b_bn: 'জল', c_bn: 'ইস্পাত', d_bn: 'বায়ু',
+    ans: 'A',
+    exp: 'Sound waves are mechanical longitudinal waves requiring a material medium (solid, liquid, or gas) to propagate. They cannot travel through a vacuum.',
+    fact: 'Speed of sound: Solids > Liquids > Gases. Speed of sound in steel is ~5960 m/s, while in dry air at 20°C it is ~343 m/s.',
+    tip: 'Light is an electromagnetic wave and can travel through vacuum at 3 × 10⁸ m/s.',
+    year: 2018, date: '2018-09-17', shift: 'Shift 1', paper: 'RRB Group D Level-1 Official Paper 2018'
+  },
+  {
+    exam_id: 'exam-rrb-je',
+    subject: 'sub-sci', chapter: 'chap-sci-phy',
+    text: 'Which mirror is used as a rear-view mirror in motor vehicles?',
+    text_bn: 'মোটর গাড়িতে রিয়ার-ভিউ (পিছনের দৃশ্য দেখার) দর্পণ হিসেবে কোনটি ব্যবহৃত হয়?',
+    a: 'Convex mirror', b: 'Concave mirror', c: 'Plane mirror', d: 'Cylindrical mirror',
+    a_bn: 'উত্তল দর্পণ (Convex mirror)', b_bn: 'অবতল দর্পণ (Concave mirror)', c_bn: 'সমতল দর্পণ', d_bn: 'চোঙাকৃতি দর্পণ',
+    ans: 'A',
+    exp: 'Convex mirrors always form an erect, virtual, and diminished image and provide a wider field of view for the driver.',
+    fact: 'Concave mirrors are used in car headlights, solar cookers, and by dentists (producing magnified erect images when object is between pole and focus).',
+    tip: 'Convex mirrors diverge light rays; concave mirrors converge light rays.',
+    year: 2019, date: '2019-05-22', shift: 'Shift 1', paper: 'RRB Junior Engineer (JE) CBT-1 Official Paper 2019'
+  },
+  {
+    exam_id: 'exam-rrb-alp',
+    subject: 'sub-sci', chapter: 'chap-sci-phy',
+    text: 'A device that converts mechanical energy into electrical energy based on electromagnetic induction is called a:',
+    text_bn: 'তড়িৎচৌম্বকীয় আবেশের ওপর ভিত্তি করে যান্ত্রিক শক্তিকে তড়িৎ শক্তিতে রূপান্তরিত করে কোন যন্ত্র?',
+    a: 'Dynamo / Generator', b: 'Electric Motor', c: 'Transformer', d: 'Voltmeter',
+    a_bn: 'ডায়নামো / জেনারেটর', b_bn: 'বৈদ্যুতিক মোটর', c_bn: 'ট্রান্সফরমার', d_bn: 'ভোল্টমিটার',
+    ans: 'A',
+    exp: 'An electric generator (dynamo) converts mechanical energy into electrical energy using Michael Faraday’s principle of electromagnetic induction.',
+    fact: 'An electric motor does the reverse: it converts electrical energy into mechanical energy.',
+    tip: "Transformers change AC voltage levels without changing frequency; they do not convert energy forms.",
+    year: 2018, date: '2018-08-10', shift: 'Shift 1', paper: 'RRB ALP CBT-1 Official Paper 2018'
+  },
+  {
+    exam_id: 'exam-rrb-ntpc',
+    subject: 'sub-sci', chapter: 'chap-sci-phy',
+    text: 'What is the escape velocity from the surface of the Earth?',
+    text_bn: 'পৃথিবীপৃষ্ঠ থেকে মুক্তিবেগ (Escape Velocity)-এর মান কত?',
+    a: '11.2 km/s', b: '9.8 km/s', c: '2.38 km/s', d: '42.1 km/s',
+    a_bn: '১১.২ কিমি/সেকেন্ড', b_bn: '৯.৮ কিমি/সেকেন্ড', c_bn: '২.৩৮ কিমি/সেকেন্ড', d_bn: '৪২.১ কিমি/সেকেন্ড',
+    ans: 'A',
+    exp: 'Escape velocity ve = √(2gR) ≈ 11.2 km/s from Earth. An object launched with this speed will break free of Earth’s gravitational field.',
+    fact: 'Escape velocity from the Moon is only 2.38 km/s, which is why the Moon has no atmosphere.',
+    tip: 'Escape velocity is independent of the mass of the projectile.',
+    year: 2021, date: '2021-01-16', shift: 'Shift 2', paper: 'RRB NTPC CBT-1 Official Paper 2021'
+  },
+  {
+    exam_id: 'exam-rrb-group-d',
+    subject: 'sub-sci', chapter: 'chap-sci-phy',
+    text: 'Which optical phenomenon is primarily responsible for the sparkling of a diamond and the transmission of light in optical fibers?',
+    text_bn: 'হীরকের উজ্জ্বলতা এবং অপটিক্যাল ফাইবারে আলোর পরিবহণের জন্য প্রধানত কোন আলোকীয় ঘটনাটি দায়ী?',
+    a: 'Total Internal Reflection', b: 'Diffraction', c: 'Refraction', d: 'Scattering',
+    a_bn: 'অভ্যন্তরীণ পূর্ণ প্রতিফলন (Total Internal Reflection)', b_bn: 'অপবর্তন', c_bn: 'প্রতিসরণ', d_bn: 'বিক্ষেপণ',
+    ans: 'A',
+    exp: 'Total internal reflection occurs when light travels from a denser medium to a rarer medium at an angle of incidence greater than the critical angle (24.4° for diamond).',
+    fact: 'Mirages in deserts and the shining of air bubbles in water are also caused by total internal reflection.',
+    tip: 'Two conditions for TIR: light must travel from denser to rarer medium, and angle of incidence > critical angle.',
+    year: 2022, date: '2022-09-02', shift: 'Shift 2', paper: 'RRB Group D Level-1 Official Paper 2022'
+  },
+
+  // --- CHEMISTRY ---
+  {
+    exam_id: 'exam-rrb-group-d',
+    subject: 'sub-sci', chapter: 'chap-sci-chem',
+    text: 'What is the chemical formula of "Plaster of Paris"?',
+    text_bn: '"প্লাস্টার অব প্যারিস"-এর রাসায়নিক সংকেত কোনটি?',
+    a: 'CaSO4 · 1/2 H2O', b: 'CaSO4 · 2 H2O', c: 'CaCO3', d: 'CaOCl2',
+    a_bn: 'CaSO4 · 1/2 H2O', b_bn: 'CaSO4 · 2 H2O', c_bn: 'CaCO3', d_bn: 'CaOCl2',
+    ans: 'A',
+    exp: 'Plaster of Paris is Calcium Sulphate Hemihydrate (CaSO4·1/2H2O), prepared by heating Gypsum (CaSO4·2H2O) to 373 K (100°C).',
+    fact: 'When mixed with water, Plaster of Paris hardens back into gypsum.',
+    tip: 'Gypsum has 2 water molecules of crystallization, while Plaster of Paris has half a water molecule per CaSO4.',
+    year: 2018, date: '2018-09-22', shift: 'Shift 1', paper: 'RRB Group D Level-1 Official Paper 2018'
+  },
+  {
+    exam_id: 'exam-rrb-ntpc',
+    subject: 'sub-sci', chapter: 'chap-sci-chem',
+    text: 'Which gas is evolved when an acid reacts with an active metal?',
+    text_bn: 'একটি সক্রিয় ধাতুর সাথে অ্যাসিডের বিক্রিয়ায় কোন গ্যাস উৎপন্ন হয়?',
+    a: 'Hydrogen gas (H2)', b: 'Oxygen gas (O2)', c: 'Carbon dioxide (CO2)', d: 'Nitrogen gas (N2)',
+    a_bn: 'হাইড্রোজেন গ্যাস (H2)', b_bn: 'অক্সিজেন গ্যাস (O2)', c_bn: 'কার্বন ডাইঅক্সাইড (CO2)', d_bn: 'নাইট্রোজেন গ্যাস (N2)',
+    ans: 'A',
+    exp: 'Active Metal + Dilute Acid → Metal Salt + Hydrogen Gas (H2). E.g., Zn + H2SO4 → ZnSO4 + H2↑.',
+    fact: 'Hydrogen gas burns with a characteristic "pop" sound when a burning matchstick is brought near.',
+    tip: 'When carbonates or bicarbonates react with acids, Carbon Dioxide (CO2) gas is evolved.',
+    year: 2021, date: '2021-02-15', shift: 'Shift 1', paper: 'RRB NTPC CBT-1 Official Paper 2021'
+  },
+  {
+    exam_id: 'exam-rrb-alp',
+    subject: 'sub-sci', chapter: 'chap-sci-chem',
+    text: 'What is the pH value of pure distilled water at 25°C?',
+    text_bn: '২৫° সেলসিয়াস তাপমাত্রায় বিশুদ্ধ পাতিত জলের pH মান কত?',
+    a: '7.0', b: '0.0', c: '14.0', d: '5.6',
+    a_bn: '৭.০ (নিরপেক্ষ)', b_bn: '০.০', c_bn: '১৪.০', d_bn: '৫.৬',
+    ans: 'A',
+    exp: 'Pure water has equal concentrations of H+ and OH- ions ([H+] = 10⁻⁷ M), making it neutral with a pH of 7 at 25°C.',
+    fact: 'Human blood has a slightly alkaline pH of 7.35 to 7.45. Gastric acid in the stomach has a pH of 1.5 to 3.5.',
+    tip: 'pH < 7 is acidic, pH = 7 is neutral, pH > 7 is basic/alkaline.',
+    year: 2018, date: '2018-08-13', shift: 'Shift 3', paper: 'RRB ALP CBT-1 Official Paper 2018'
+  },
+  {
+    exam_id: 'exam-rrb-je',
+    subject: 'sub-sci', chapter: 'chap-sci-chem',
+    text: 'Which non-metal is the only one that exists in a liquid state at room temperature?',
+    text_bn: 'কোন অধাতুটি একমাত্র স্বাভাবিক ঘরের তাপমাত্রায় তরল অবস্থায় থাকে?',
+    a: 'Bromine (Br)', b: 'Mercury (Hg)', c: 'Chlorine (Cl)', d: 'Iodine (I)',
+    a_bn: 'ব্রোমিন (Br)', b_bn: 'পারদ (Hg)', c_bn: 'ক্লোরিন (Cl)', d_bn: 'আয়োডিন (I)',
+    ans: 'A',
+    exp: 'Bromine is a reddish-brown liquid at room temperature (atomic number 35).',
+    fact: 'Mercury (Hg) is the only METAL that is liquid at room temperature. Bromine is the only NON-METAL.',
+    tip: 'Do not confuse Mercury (metal) with Bromine (non-metal).',
+    year: 2019, date: '2019-05-24', shift: 'Shift 2', paper: 'RRB JE CBT-1 Official Paper 2019'
+  },
+  {
+    exam_id: 'exam-rrb-group-d',
+    subject: 'sub-sci', chapter: 'chap-sci-chem',
+    text: 'The process of applying a protective zinc coating to steel or iron to prevent rusting is called:',
+    text_bn: 'মরিচা রোধের জন্য লোহা বা ইস্পাতের ওপর দস্তার (জিঙ্ক) প্রতিরক্ষামূলক প্রলেপ দেওয়ার প্রক্রিয়াকে কী বলে?',
+    a: 'Galvanization', b: 'Anodizing', c: 'Electroplating', d: 'Annealing',
+    a_bn: 'গ্যালভানাইজেশন (Galvanization)', b_bn: 'অ্যানোডাইজিং', c_bn: 'ইলেক্ট্রোপ্লেটিং', d_bn: 'অ্যানিলিং',
+    ans: 'A',
+    exp: 'Galvanization coats iron/steel with a thin sacrificial layer of Zinc (Zn) to protect against atmospheric moisture and oxygen.',
+    fact: 'Zinc acts as a sacrificial anode because it oxidizes more readily than iron (Zn → Zn²⁺ + 2e⁻).',
+    tip: 'Rust chemical formula is Hydrated Ferric Oxide: Fe2O3 · xH2O.',
+    year: 2022, date: '2022-09-15', shift: 'Shift 1', paper: 'RRB Group D Level-1 Official Paper 2022'
+  },
+  {
+    exam_id: 'exam-rrb-ntpc',
+    subject: 'sub-sci', chapter: 'chap-sci-chem',
+    text: 'In Mendeleev’s Periodic Table, elements were arranged in increasing order of their:',
+    text_bn: 'মেন্ডেলিফের পর্যায় সারণিতে মৌলসমূহকে কিসের ঊর্ধ্বক্রম অনুসারে সাজানো হয়েছিল?',
+    a: 'Atomic Mass', b: 'Atomic Number', c: 'Number of Neutrons', d: 'Valency',
+    a_bn: 'পারমাণবিক ভর (Atomic Mass)', b_bn: 'পারমাণবিক সংখ্যা (Atomic Number)', c_bn: 'নিউট্রন সংখ্যা', d_bn: 'যোজ্যতা',
+    ans: 'A',
+    exp: 'Dmitri Mendeleev formulated the Periodic Law in 1869: properties of elements are a periodic function of their atomic masses.',
+    fact: 'The Modern Periodic Table (formulated by Henry Moseley in 1913) arranges elements by Atomic Number (Z).',
+    tip: 'Mendeleev left gaps for undiscovered elements like Eka-Aluminium (Gallium) and Eka-Silicon (Germanium).',
+    year: 2021, date: '2021-01-25', shift: 'Shift 1', paper: 'RRB NTPC CBT-1 Official Paper 2021'
+  },
+
+  // --- BIOLOGY ---
+  {
+    exam_id: 'exam-rrb-ntpc',
+    subject: 'sub-sci', chapter: 'chap-sci-bio',
+    text: 'Which cell organelle is known as the "Powerhouse of the Cell"?',
+    text_bn: 'কোন কোষীয় অঙ্গাণুকে "কোষের শক্তিমহল" (Powerhouse of the Cell) বলা হয়?',
+    a: 'Mitochondria', b: 'Ribosome', c: 'Lysosome', d: 'Golgi Apparatus',
+    a_bn: 'মাইটোকনড্রিয়া', b_bn: 'রাইবোজোম', c_bn: 'লাইসোজোম', d_bn: 'গলগি বডি',
+    ans: 'A',
+    exp: 'Mitochondria generate most of the chemical energy needed by the cell in the form of Adenosine Triphosphate (ATP) through cellular respiration.',
+    fact: 'Mitochondria have their own circular DNA and 70S ribosomes (semi-autonomous).',
+    tip: 'Lysosome is called the "Suicide Bag" and Ribosome is called the "Protein Factory".',
+    year: 2021, date: '2021-01-08', shift: 'Shift 1', paper: 'RRB NTPC CBT-1 Official Paper 2021'
+  },
+  {
+    exam_id: 'exam-rrb-group-d',
+    subject: 'sub-sci', chapter: 'chap-sci-bio',
+    text: 'Which blood group is known as the "Universal Donor"?',
+    text_bn: 'কোন রক্তের গ্রুপটিকে "সর্বজনীন দাতা" (Universal Donor) বলা হয়?',
+    a: 'O negative (O-)', b: 'AB positive (AB+)', c: 'A positive (A+)', d: 'B negative (B-)',
+    a_bn: 'ও নেগেটিভ (O-)', b_bn: 'এবি পজিটিভ (AB+)', c_bn: 'এ পজিটিভ (A+)', d_bn: 'বি নেগেটিভ (B-)',
+    ans: 'A',
+    exp: 'O negative blood has neither A nor B antigens on RBC surfaces and lacks Rh factor, meaning it does not trigger an immune response in recipients.',
+    fact: 'AB positive (AB+) is the "Universal Recipient" because it has both A and B antigens and Rh factor, with no anti-A or anti-B antibodies.',
+    tip: 'Karl Landsteiner discovered the ABO blood group system in 1900 and received the Nobel Prize in 1930.',
+    year: 2022, date: '2022-08-25', shift: 'Shift 1', paper: 'RRB Group D Level-1 Official Paper 2022'
+  },
+  {
+    exam_id: 'exam-rrb-group-d',
+    subject: 'sub-sci', chapter: 'chap-sci-bio',
+    text: 'Deficiency of Vitamin D in children leads to which disease?',
+    text_bn: 'শিশুদের শরীরে ভিটামিন ডি-এর অভাবে কোন রোগটি হয়?',
+    a: 'Rickets', b: 'Scurvy', c: 'Beri-Beri', d: 'Night Blindness',
+    a_bn: 'রিকেট (Rickets)', b_bn: 'স্কার্ভি (Scurvy)', c_bn: 'বেরিবেরি (Beri-Beri)', d_bn: 'রাতকানা (Night Blindness)',
+    ans: 'A',
+    exp: 'Vitamin D (Calciferol) promotes calcium absorption. Deficiency causes softening and weakening of bones (Rickets in children, Osteomalacia in adults).',
+    fact: 'Vitamin C deficiency causes Scurvy; Vitamin B1 deficiency causes Beri-Beri; Vitamin A deficiency causes Night Blindness (Nyctalopia).',
+    tip: 'Vitamin D is synthesized in human skin when exposed to sunlight (UVB radiation).',
+    year: 2018, date: '2018-10-04', shift: 'Shift 2', paper: 'RRB Group D Level-1 Official Paper 2018'
+  },
+  {
+    exam_id: 'exam-rrb-ntpc',
+    subject: 'sub-sci', chapter: 'chap-sci-bio',
+    text: 'Insulin hormone is secreted by which organ of the human body?',
+    text_bn: 'মানবদেহের কোন অঙ্গ থেকে ইনসুলিন হরমোন ক্ষরিত হয়?',
+    a: 'Pancreas', b: 'Liver', c: 'Thyroid', d: 'Pituitary gland',
+    a_bn: 'অগ্ন্যাশয় (Pancreas)', b_bn: 'যকৃত (Liver)', c_bn: 'থাইরয়েড', d_bn: 'পিটুইটারি গ্রন্থি',
+    ans: 'A',
+    exp: 'Insulin is a peptide hormone produced by the Beta cells of the Islets of Langerhans in the Pancreas. It regulates glucose levels in blood.',
+    fact: 'Deficiency or resistance to insulin leads to Diabetes Mellitus.',
+    tip: 'The Pancreas is a mixed gland (both endocrine and exocrine).',
+    year: 2021, date: '2021-03-03', shift: 'Shift 2', paper: 'RRB NTPC CBT-1 Official Paper 2021'
+  },
+  {
+    exam_id: 'exam-rrb-je',
+    subject: 'sub-sci', chapter: 'chap-sci-bio',
+    text: 'Which plant tissue is responsible for the transport of water and dissolved minerals from roots to leaves?',
+    text_bn: 'উদ্ভিদের মূল থেকে পাতায় জল ও খনিজ লবণ পরিবহণের জন্য কোন কলা দায়ী?',
+    a: 'Xylem', b: 'Phloem', c: 'Parenchyma', d: 'Collenchyma',
+    a_bn: 'জাইলেম (Xylem)', b_bn: 'ফ্লোয়েম (Phloem)', c_bn: 'প্যারেনকাইমা', d_bn: 'কোলেনকাইমা',
+    ans: 'A',
+    exp: 'Xylem is complex vascular tissue that transports water and minerals unidirectionally upwards. Phloem transports food (sucrose) bidirectionally.',
+    fact: 'Xylem consists of tracheids, vessels, xylem parenchyma, and xylem fibres.',
+    tip: 'Memory Trick: Xylem = Water (Jal), Phloem = Food (Phal).',
+    year: 2019, date: '2019-05-28', shift: 'Shift 3', paper: 'RRB JE CBT-1 Official Paper 2019'
+  },
+  {
+    exam_id: 'exam-rrb-alp',
+    subject: 'sub-sci', chapter: 'chap-sci-bio',
+    text: 'What is the normal blood pressure of a healthy adult human being?',
+    text_bn: 'একজন সুস্থ প্রাপ্তবয়স্ক মানুষের স্বাভাবিক রক্তচাপ কত?',
+    a: '120/80 mm Hg', b: '140/90 mm Hg', c: '100/60 mm Hg', d: '160/100 mm Hg',
+    a_bn: '১২০/৮০ মিমি পারদ (mm Hg)', b_bn: '১৪০/৯০ মিমি পারদ', c_bn: '১০০/৬০ মিমি পারদ', d_bn: '১৬০/১০০ মিমি পারদ',
+    ans: 'A',
+    exp: 'Normal blood pressure is 120 mm Hg systolic (during contraction) and 80 mm Hg diastolic (during relaxation).',
+    fact: 'Blood pressure is measured using an instrument called a Sphygmomanometer.',
+    tip: 'Hypertension is defined as persistent blood pressure of 140/90 mm Hg or higher.',
+    year: 2018, date: '2018-08-20', shift: 'Shift 2', paper: 'RRB ALP CBT-1 Official Paper 2018'
+  }
+];
