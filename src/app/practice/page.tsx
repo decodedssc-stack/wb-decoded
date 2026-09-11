@@ -113,21 +113,21 @@ export default function ChapterPracticePage() {
     }
   };
 
-  // Generate 30 tests metadata for the selected chapter
+  // Generate 10 tests metadata for the selected chapter (WB Decoded Master Standard)
   const chapterTests = useMemo(() => {
     if (!activeChapter) return [];
-    return Array.from({ length: 30 }, (_, i) => {
+    return Array.from({ length: 10 }, (_, i) => {
       const testNum = i + 1;
-      const testId = `mock-${activeChapter.id}-t${String(testNum).padStart(2, '0')}`;
+      const testId = `mock-${activeChapter.id}-m${String(testNum).padStart(2, '0')}`;
       let tier: 'foundation' | 'standard' | 'topper' = 'foundation';
       let tierLabel = 'Foundation Drill';
       let tierColor = 'emerald';
 
-      if (testNum > 20) {
+      if (testNum > 7) {
         tier = 'topper';
         tierLabel = 'Topper Challenger';
         tierColor = 'purple';
-      } else if (testNum > 10) {
+      } else if (testNum > 3) {
         tier = 'standard';
         tierLabel = 'Exam Standard';
         tierColor = 'amber';
@@ -140,9 +140,9 @@ export default function ChapterPracticePage() {
         tierLabel,
         tierColor,
         isFree: testNum <= 2,
-        questionsCount: 25,
-        durationMins: 20,
-        totalMarks: 25,
+        questionsCount: 30,
+        durationMins: 25,
+        totalMarks: 30,
         negativeMark: 0.33
       };
     });
@@ -379,7 +379,7 @@ export default function ChapterPracticePage() {
                           {chap.name}
                         </h4>
                         <span className="text-[11px] text-slate-400 font-bold">
-                          30 Progressive Mock Tests
+                          10 Progressive Mock Tests (300 MCQs)
                         </span>
                       </div>
                     </div>
@@ -421,15 +421,15 @@ export default function ChapterPracticePage() {
                 <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 font-bold pt-2 border-t border-slate-100">
                   <span className="flex items-center gap-1.5 text-slate-900">
                     <Layers className="w-4 h-4 text-[#2563EB]" />
-                    30 Progressive Mock Tests
+                    10 Progressive Mock Tests
                   </span>
                   <span className="flex items-center gap-1.5 text-slate-900">
                     <Clock className="w-4 h-4 text-[#2563EB]" />
-                    20 Minutes / Test
+                    25 Minutes / Test
                   </span>
                   <span className="flex items-center gap-1.5 text-slate-900">
                     <Target className="w-4 h-4 text-[#2563EB]" />
-                    25 MCQs (25 Marks)
+                    30 MCQs (30 Marks)
                   </span>
                   <span className="flex items-center gap-1.5 text-slate-900">
                     <ShieldCheck className="w-4 h-4 text-[#2563EB]" />
@@ -448,7 +448,7 @@ export default function ChapterPracticePage() {
                       : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
                   }`}
                 >
-                  All 30 Tests
+                  All 10 Tests
                 </button>
 
                 <button
@@ -460,7 +460,7 @@ export default function ChapterPracticePage() {
                   }`}
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                  <span>Foundation Drills (01–10)</span>
+                  <span>Foundation Drills (01–03)</span>
                 </button>
 
                 <button
@@ -472,7 +472,7 @@ export default function ChapterPracticePage() {
                   }`}
                 >
                   <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-                  <span>Exam Standard (11–20)</span>
+                  <span>Exam Standard (04–07)</span>
                 </button>
 
                 <button
@@ -484,7 +484,7 @@ export default function ChapterPracticePage() {
                   }`}
                 >
                   <span className="w-2 h-2 rounded-full bg-purple-400"></span>
-                  <span>Topper Challenger (21–30)</span>
+                  <span>Topper Challenger (08–10)</span>
                 </button>
               </div>
 

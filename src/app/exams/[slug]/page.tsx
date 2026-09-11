@@ -512,7 +512,7 @@ export default function ExamDetailPage() {
                           <h5 className="font-black text-sm text-slate-900 group-hover:text-[#00A389] transition-colors">
                             {chap.name}
                           </h5>
-                          <p className="text-xs text-slate-500">30 Progressive Tests (750 MCQs)</p>
+                          <p className="text-xs text-slate-500">10 Progressive Tests (300 MCQs)</p>
                         </div>
                         <span className="text-xs font-bold text-[#00A389] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                           Select Chapter &rarr;
@@ -542,9 +542,9 @@ export default function ExamDetailPage() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
-                  {Array.from({ length: 30 }, (_, i) => {
+                  {Array.from({ length: 10 }, (_, i) => {
                     const tNum = i + 1;
-                    const testId = `mock-${examChapterId}-t${String(tNum).padStart(2, '0')}`;
+                    const testId = `mock-${examChapterId}-m${String(tNum).padStart(2, '0')}`;
                     const isFree = tNum <= 2;
 
                     return (
@@ -568,9 +568,9 @@ export default function ExamDetailPage() {
                             )}
                           </div>
                           <h6 className="font-extrabold text-xs text-slate-900 pt-1">
-                            {tNum <= 10 ? 'Foundation Drill' : tNum <= 20 ? 'Exam Standard' : 'Topper Challenger'} #{tNum}
+                            {tNum <= 3 ? 'Foundation Drill' : tNum <= 7 ? 'Exam Standard' : 'Topper Challenger'} #{tNum}
                           </h6>
-                          <p className="text-[11px] text-slate-500">25 MCQs • 20 Mins • 25 Marks</p>
+                          <p className="text-[11px] text-slate-500">30 MCQs • 25 Mins • 30 Marks</p>
                         </div>
 
                         <Link

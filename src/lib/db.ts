@@ -1,6 +1,7 @@
 import Database from 'better-sqlite3';
 import path from 'path';
 import fs from 'fs';
+import zlib from 'zlib';
 import { seedDatabase } from './seedDatabase';
 
 // Database file stored in project data directory
@@ -10,6 +11,20 @@ if (!fs.existsSync(dbDirectory)) {
 }
 
 const dbPath = path.join(dbDirectory, 'wb_decoded.sqlite');
+const dbGzPath = path.join(dbDirectory, 'wb_decoded.sqlite.gz');
+
+// Auto-restore database from compressed bundle on Emergent or cloud environments
+if ((!fs.existsSync(dbPath) || fs.statSync(dbPath).size === 0) && fs.existsSync(dbGzPath)) {
+  try {
+    console.log('📦 Restoring complete WB Decoded database from wb_decoded.sqlite.gz...');
+    const compressed = fs.readFileSync(dbGzPath);
+    const decompressed = zlib.gunzipSync(compressed);
+    fs.writeFileSync(dbPath, decompressed);
+    console.log(`✅ Database restored successfully (${(decompressed.length / (1024 * 1024)).toFixed(2)} MB).`);
+  } catch (err) {
+    console.error('⚠️ Failed to restore database from compressed bundle:', err);
+  }
+}
 
 let dbInstance: Database.Database | null = null;
 
