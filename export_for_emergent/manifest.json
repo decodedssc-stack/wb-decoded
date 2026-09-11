@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-09-11T12:22:52.388Z",
+  "exportedAt": "2026-09-11T16:39:33.916Z",
   "sourceDatabase": "wb_decoded.sqlite",
   "totalQuestions": 52275,
   "totalMocks": 3150,
@@ -30,7 +30,7 @@
     "exam_updates": 3,
     "daily_challenges": 3,
     "current_affairs_items": 2,
-    "study_notes": 122,
+    "study_notes": 0,
     "ncert_books": 35,
     "ncert_chapters": 179,
     "otp_codes": 1,
